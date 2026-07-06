@@ -1,0 +1,20 @@
+---
+description: >-
+  Karpathy behavioral guidelines (pointer). Canonical hub rule:
+  00-agent-behavior/karpathy-coding-guidelines.mdc; full detail in skill
+  karpathy-guidelines. Request for non-trivial coding work.
+alwaysApply: false
+---
+# Karpathy guidelines (pointer)
+
+This file is a **stub** to avoid duplicating long prose in the hub.
+
+| Need | Use |
+| ---- | --- |
+| Hub rule (short, four principles) | `00-agent-behavior/karpathy-coding-guidelines.mdc` |
+| Full behavioral detail | Skill `karpathy-guidelines` (`.cursor/skills/karpathy-guidelines/SKILL.md`) |
+| Ambiguity / interviews | `clarify-first-prompting`, `ask-questions-if-underspecified` |
+| Security | `security-core`, `security-review` skill |
+| Before "done" | `verification-before-completion`, `check.mdc` |
+
+Do not paste the full Karpathy essay here — load the skill or the `00-agent-behavior` rule when the task needs it.

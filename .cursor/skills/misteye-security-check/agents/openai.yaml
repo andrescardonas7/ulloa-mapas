@@ -1,0 +1,4 @@
+interface:
+  display_name: "MistEye Security Gate"
+  short_description: "Offline hard-block guard for local detect-first install and access flows"
+  default_prompt: "Use $misteye-security-check as an offline local security gate. Enforce detect-first behavior before opening URLs/domains or installing dependencies. Do not call external APIs, do not request API keys, and do not rely on cloud threat-intel fields like safe/matches. Produce a local pre-check with risk level and evidence. For high risk: block. For medium risk: ask explicit user confirmation. For low risk: continue with warning. For dependency manifests, parse dependency items one by one and flag floating VCS refs, unknown raw URLs, suspicious package names, and unparseable lines in active install paths."

@@ -1,0 +1,35 @@
+---
+description: >-
+  Skills trust audit policy: when to run audit-skills-trust.mjs (staged,
+  changed-only, or single skill). Always-on to prevent noisy full-catalog scans.
+alwaysApply: true
+---
+
+# Skills: escaneo de confianza sin ruido
+
+Un solo motor (`audit-skills-trust.mjs` + opcional `skills-trust-deep-scan.mjs`). **Nunca** escanear todo el catálogo salvo que el usuario pida auditoría completa del hub o sea el job CI `audit` (layout global).
+
+## Tres disparadores (elige el alcance correcto)
+
+| Momento | Quién | Comando | Alcance |
+| --- | --- | --- | --- |
+| **Commit local** | Git pre-commit (automático si `pnpm --dir .cursor hooks:install`) | `--staged-only` | Solo carpetas con archivos en *staging* |
+| **PR / push** | GitHub Actions | `--changed-only` + SkillSpector deep | Solo skills tocadas en el diff |
+| **A petición** | Usuario o agente | `--skill <nombre>` | **Una** skill (p. ej. terceros recién copiados) |
+
+## Cuando el usuario añade o menciona una skill
+
+1. Si nombró la carpeta: `node .cursor/scripts/audit-skills-trust.mjs --skill <nombre>`.
+2. Si acaba de `git add` una skill nueva: el pre-commit usará `--staged-only` al hacer commit (no hace falta repetir salvo que quiera ver el informe antes).
+3. Si pidió “revisa esta skill por seguridad” / “¿está infectada?”: mismo `--skill <nombre>`; opcional deep: `pnpm --dir .cursor audit:skills:deep` solo si está instalado SkillSpector y el usuario quiere segunda opinión.
+4. Responder con **veredicto ≤8 líneas** (skill-trust-audit). **Crítico/Alto** → no dar por cerrada la instalación sin el usuario.
+
+## Prohibido (evita bucles y ruido)
+
+- No ejecutar `audit-skills-trust.mjs` sin flags en tareas que no toquen skills.
+- No re-escanear skills ya auditadas en la misma conversación sin cambios nuevos en disco.
+- No lanzar deep scan (SkillSpector) en cada mensaje; solo CI o petición explícita de auditoría profunda.
+
+## Referencia
+
+Comando Cursor: `/audit-skill-security`. Skill: `.cursor/skills/skill-trust-audit/SKILL.md`. Patrones: `.cursor/scripts/skills-trust-block-patterns.mjs`.

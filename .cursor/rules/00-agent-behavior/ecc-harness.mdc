@@ -1,0 +1,24 @@
+---
+description: "ECC harness integration (Cursor only): env profiles, instincts path, /harness-audit — request when tuning hooks or importing from affaan-m/ECC"
+alwaysApply: false
+---
+
+# ECC harness (Cursor only)
+
+This rule applies to the **Cursor agent** in repos using this `.cursor` hub. It does **not** configure Alfred/OpenClaw (`openclaw.json`).
+
+## Quick reference
+
+- Docs: `.cursor/integrations/ecc/README.md`
+- Skills: `ecc-harness-performance`, `ecc-catalog-consult`, `ecc-continuous-learning`, `agent-harness-security`
+- Instincts: `.cursor/hooks/state/instincts/` → session hook may write `active-session-context.md`
+- Commands: `/harness-audit`, `/quality-gate`, `/model-route`, `/ecc-consult`, `/loop-start`, `/loop-status`
+
+## Defaults
+
+Prefer `ECC_HOOK_PROFILE=standard`. Use `minimal` if hooks feel heavy. Do not stack a full ECC `install.ps1 --profile full` on this hub.
+
+## Alfred boundary
+
+Bot security: `security-guard` + `alfred-security-skills.mdc`. Do not assume ECC skills in `.cursor/skills/` are loaded by Alfred unless registered in `openclaw.json`.
+

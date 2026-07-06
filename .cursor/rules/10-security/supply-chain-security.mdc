@@ -1,0 +1,30 @@
+---
+description: Prevent unsafe package installs, dependency upgrades, and CI supply-chain compromise
+alwaysApply: true
+---
+
+# Supply Chain Security
+
+## Stack scope (read first)
+
+- **All stacks:** apply the universal bullets below (untrusted deps, lifecycle scripts, CI least privilege, secrets, incident response).
+- **Node / JavaScript only** (`package.json`, `pnpm-lock.yaml`, `package-lock.json`, `yarn.lock`): also apply the **pnpm** subsection. Do not push `pnpm` on Python (`pyproject.toml`, `pip`, `uv`), R, QGIS, Go (`go.mod`), Rust (`Cargo.toml`), etc.—use that ecosystem’s lockfile and install commands; for multi-ecosystem detail see `supply-chain-security-multi.mdc` (apply intelligently).
+
+## Universal (every stack)
+
+- Treat every dependency change as untrusted until reviewed, including popular packages and patch updates.
+- Do not run broad dependency updates or lockfile refreshes unless the user explicitly approved that task.
+- Before approving dependency or CI changes, review added packages, transitive changes, lifecycle scripts, publish time, maintainers, repository tags, changelog, provenance, and unusual tarball contents.
+- Treat install/build lifecycle hooks as high risk (`preinstall`, `postinstall`, `prepare`, etc.). Do not run install scripts from new or changed packages until reviewed.
+- Flag packages published in the last 72 hours, packages with new maintainers, sudden release bursts, missing Git tags, missing changelogs, obfuscated code, new `bin` entries, or unexpected dependency additions.
+- Never expose registry tokens, GitHub tokens, cloud keys, SSH keys, `.env` values, or credentials in workflows, package scripts, logs, artifacts, examples, or committed config.
+- Pin privileged GitHub Actions and Docker images to immutable refs. Avoid `latest` in CI and publishing paths.
+- Be suspicious of `pull_request_target`, `id-token: write`, `contents: write`, `packages: write`, `actions: write`, and publish jobs; require least privilege and explicit release conditions.
+- If a compromised package may have executed, stop normal work, remove the package, purge caches, rotate affected secrets, inspect CI/workflows, rebuild artifacts, and report without printing secret values.
+
+## Node / pnpm only
+
+- Use `pnpm` only. Never use `npm install`, `npm update`, `yarn`, force flags, or legacy peer dependency bypasses.
+- Add direct dependencies with exact versions: `pnpm add <package> --save-exact`.
+- Before approving changes to `package.json`, `pnpm-lock.yaml`, or `.npmrc`, complete the universal review above.
+- Prefer `pnpm install --frozen-lockfile` in CI and `pnpm install --ignore-scripts` for inspection when safe.

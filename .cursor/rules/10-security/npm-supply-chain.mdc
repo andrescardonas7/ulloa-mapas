@@ -1,0 +1,83 @@
+---
+description: >-
+  npm/pnpm supply-chain hardening: scoped private packages, registry routing,
+  lockfile integrity, ignore-scripts, cooldown, dependency confusion. Applies
+  when editing package manifests, lockfiles, or package manager config.
+globs:
+  - '**/package.json'
+  - '**/.npmrc'
+  - '**/pnpm-workspace.yaml'
+  - '**/package-lock.json'
+  - '**/pnpm-lock.yaml'
+  - '**/yarn.lock'
+  - '**/bun.lock'
+  - '**/bunfig.toml'
+  - '**/.yarnrc.yml'
+alwaysApply: false
+---
+
+# npm / pnpm supply chain (resumen operativo)
+
+Fuente: [npm-security-best-practices](https://github.com/lirantal/npm-security-best-practices) (Liran Tal). Para auditorías completas, cargar la skill **npm-supply-chain-security** (`.cursor/skills/npm-supply-chain-security/SKILL.md`).
+
+Este workspace usa **pnpm** cuando exista `package.json` con `packageManager: pnpm@…`.
+
+## Dependency confusion (§17) — obligatorio con registry privado
+
+Si existe registry privado (Artifactory, Verdaccio, GitHub Packages, etc.):
+
+1. **Paquetes internos siempre con scope**: `@org/nombre`, nunca nombres sin scope para código privado.
+2. **`.npmrc` en el repo** (solo URLs de registry; sin tokens):
+
+   ```ini
+   @yourorg:registry=https://npm.yourorg.com/
+   ```
+
+3. **Tokens solo fuera del repo**: `~/.npmrc`, `NPM_TOKEN` en CI — nunca en el `.npmrc` commiteado (ver `security-env.mdc`).
+4. **Migración pendiente**: publicar placeholders en npm público para nombres legacy sin scope, o migrar a scope cuanto antes.
+5. **CI**: validar lockfile con `lockfile-lint` (hosts HTTPS, registries esperados).
+
+**Por qué importa**: un atacante puede publicar en npmjs.org el mismo nombre con versión semver mayor; el resolver puede elegir el paquete público malicioso.
+
+## Config mínima recomendada (proyecto)
+
+**`.npmrc`** (npm):
+
+```ini
+ignore-scripts=true
+allow-git=none
+min-release-age=30
+```
+
+**`pnpm-workspace.yaml`** (pnpm 10+):
+
+```yaml
+minimumReleaseAge: 43200
+trustPolicy: no-downgrade
+blockExoticSubdeps: true
+strictDepBuilds: true
+allowBuilds:
+  esbuild: true
+```
+
+Ajustar `allowBuilds` / `minimumReleaseAgeExclude` según el proyecto; documentar excepciones.
+
+## Anti-patrones
+
+- `npm update`, `pnpm update`, `npx paquete` sin versión ni workspace offline para herramientas críticas (MCP, CI).
+- Dependencias `git+https://` o tarball en transitivas sin `blockExoticSubdeps` (pnpm).
+- Lockfile en PR sin revisar cambios en `resolved` / hosts.
+- Confiar solo en la UI de npmjs.org para revisar código instalado.
+
+## Comandos preferidos
+
+- Instalación reproducible: `pnpm install --frozen-lockfile` o `npm ci`.
+- Excepción de cooldown tras fix de seguridad: `pnpm audit --fix` (actualiza exclusiones en workspace).
+- Escanear secretos/deps: Trivy según regla `check.mdc` — no sustituye política de registry.
+
+## Checklist rápido al tocar dependencias
+
+- [ ] ¿Paquete interno? → scope + `@org:registry` en `.npmrc`
+- [ ] ¿Nuevo `.npmrc` / lockfile en PR? → sin secretos; hosts permitidos
+- [ ] ¿Scripts de install? → deny por defecto; allow-list explícita si hace falta
+- [ ] ¿Upgrade masivo? → PR revisado (Dependabot/Renovate), no `update` a ciegas

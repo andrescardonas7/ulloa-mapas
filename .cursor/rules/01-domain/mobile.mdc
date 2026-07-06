@@ -1,0 +1,28 @@
+---
+description: >-
+  React Native quick checklist (structure, styling, performance, CI). For full
+  cross-platform mobile architecture see 01-domain/mobile-cross-platform.mdc.
+alwaysApply: false
+---
+## Mobile / React Native Guidelines
+
+> **Full guide:** `01-domain/mobile-cross-platform.mdc` (Flutter, RN, MAUI, Appium, etc.). This file is the RN quick reference only.
+
+### Project Structure
+- Keep mobile code in `apps/mobile/` (Monorepo) or its own repo.
+- Use TypeScript throughout.
+
+### Styling
+- Use **StyleSheet.create** or Tailwind-RN; never inline magic numbers.
+- Leverage platform-specific files (`Component.ios.tsx`, `Component.android.tsx`).
+
+### Performance
+- Enable Hermes engine.
+- Use FlatList with keyExtractor for large lists.
+- Avoid anonymous functions in render paths.
+
+### Native Modules
+- Prefer community packages; if writing native code, follow repo's code style.
+
+### CI
+- Run E2E with Detox; build & test on both iOS and Android.

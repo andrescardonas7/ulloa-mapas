@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "hooks": {
+    "afterFileEdit": [
+      {
+        "type": "command",
+        "command": ".cursor/hooks/bash/after-file-edit.sh",
+        "timeout": 22
+      },
+      {
+        "type": "command",
+        "command": ".cursor/hooks/bash/after-lockfile-edit.sh",
+        "matcher": "\\/package\\.json$|\\/pnpm-lock\\.yaml$|\\/package-lock\\.json$|\\/yarn\\.lock$|\\/requirements.*\\.txt$|\\/pyproject\\.toml$|\\/Cargo\\.lock$|\\/go\\.sum$|\\/\\.github\\/workflows\\/[^\\/]+\\.ya?ml$",
+        "timeout": 5
+      }
+    ],
+    "beforeShellExecution": [
+      {
+        "type": "command",
+        "command": ".cursor/hooks/bash/before-shell-guard.sh",
+        "matcher": "rm -rf|--force|--no-verify|Remove-Item|del /|rd /|git reset --hard|git clean -|git checkout --|taskkill|kill -9",
+        "timeout": 5
+      },
+      {
+        "type": "command",
+        "command": ".cursor/hooks/bash/before-pkg-install.sh",
+        "matcher": "npm(\\s|\\b)(install|\\bi\\b|\\s+i\\s)|pnpm(\\s|\\b)+(update|upgrade)|\\byarn(\\b|\\s)|--legacy-peer-deps|curl[^|]*\\|\\s*(sh|bash)|iwr[^|]*\\|\\s*iex|npm.*--force|pnpm.*--force|yarn.*--force|npx.*--force|--force.*\\b(npm|pnpm|yarn|npx)\\b",
+        "timeout": 8
+      }
+    ],
+    "afterShellExecution": [
+      {
+        "type": "command",
+        "command": ".cursor/hooks/bash/after-shell-pr.sh",
+        "matcher": "gh\\s+pr\\s+create",
+        "timeout": 8
+      }
+    ],
+    "stop": [
+      {
+        "type": "command",
+        "command": ".cursor/hooks/bash/stop-console-audit.sh",
+        "timeout": 12
+      }
+    ]
+  }
+}

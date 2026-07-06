@@ -1,0 +1,54 @@
+---
+description: Supply-chain security guardrails for dependencies, package managers, secrets, and CI/CD.
+globs: ["**/package.json", "**/package-lock.json", "**/pnpm-lock.yaml", "**/yarn.lock", "**/pyproject.toml", "**/requirements*.txt", "**/Cargo.toml", "**/Cargo.lock", "**/go.mod", "**/go.sum", "**/.github/workflows/*.yml", "**/.github/workflows/*.yaml"]
+alwaysApply: false
+---
+
+# Supply Chain Security Rules
+
+Treat dependency, lockfile, package-manager, install-script, and CI/CD workflow changes as security-sensitive.
+
+## Dependency Changes
+
+- Prefer existing dependencies over adding new ones.
+- Do not add packages for trivial code.
+- Require a clear reason before adding or updating production dependencies.
+- Preserve and commit lockfiles.
+- Use frozen installs in CI: `npm ci`, `pnpm install --frozen-lockfile`, `yarn install --immutable`, or ecosystem equivalent.
+- Avoid broad version ranges in sensitive projects.
+- Review lockfile diffs for new transitive dependencies, tarball URL changes, integrity hash changes, lifecycle scripts, and unexpected registry changes.
+
+## High-Risk Signals
+
+Flag and ask for review when a package has:
+
+- `preinstall`, `install`, `postinstall`, `prepare`, `prepack`, or `postpack` scripts.
+- Recent maintainer or ownership changes.
+- Obfuscated code, binary blobs, or downloads during install.
+- Low usage, stale maintenance, no security contact, or anonymous maintainers.
+- Typosquatting similarity to a popular package.
+- New release published very recently, especially within the last 24-72 hours.
+
+## CI/CD
+
+- Default GitHub Actions permissions to read-only.
+- Pin third-party actions by full commit SHA in sensitive workflows.
+- Do not expose secrets to untrusted pull requests or forks.
+- Treat `pull_request_target` as dangerous and require explicit justification.
+- Prefer OIDC and short-lived credentials over static secrets.
+- Separate test/build credentials from publish/deploy credentials.
+
+## Secrets
+
+- Never write tokens or keys into source, lockfiles, scripts, logs, or CI output.
+- Run secret scanning when available after dependency or workflow changes.
+- If a malicious package may have executed, assume reachable secrets are compromised and recommend rotation.
+
+## Agent Response
+
+When making relevant changes, summarize:
+
+- What dependency or workflow changed.
+- Which supply-chain checks were applied.
+- Which checks could not be run.
+- Remaining risk or required human review.

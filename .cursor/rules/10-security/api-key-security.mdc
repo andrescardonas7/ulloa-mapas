@@ -1,0 +1,15 @@
+---
+description: Protect API keys, tokens, secrets, env files, and agent permission settings
+alwaysApply: true
+---
+
+# API Key and Secret Security
+
+- Never put real API keys, tokens, OAuth secrets, private keys, session cookies, webhook secrets, or connection strings in shared config, source code, docs, examples, tests, screenshots, logs, transcripts, or generated files.
+- Treat `settings.json`, committed config, MCP descriptors, CI files, Docker files, and package metadata as non-secret surfaces. Use placeholders there.
+- Store secrets only in OS environment variables, a secret manager, CI secret storage, or local-only files ignored by git such as `settings.local.json` or `.env.local`.
+- Before moving a secret into a local file, verify the file is ignored by git. Add `.gitignore` entries when missing.
+- If a secret appears in chat, logs, terminal output, git history, a shared file, or any agent-readable transcript, assume compromise and tell the user to rotate it.
+- Redact secret values in every response. Mention the key name and file path, never the value.
+- Avoid commands that dump full environments (`set`, `env`, `printenv`, `Get-ChildItem Env:`) or send local data to external endpoints unless explicitly authorized.
+- For Claude/Cursor agent settings, prefer restrictive permissions: deny `.env` reads, ask before publish/push/merge/deploy operations, and disable permission bypass modes when supported.

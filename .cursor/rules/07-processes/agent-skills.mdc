@@ -1,0 +1,54 @@
+---
+description: 'Pack addyosmani/agent-skills (C:/Users/zelda/agent-skills): workflows de spec, plan, build, verify, review, ship. Leer using-agent-skills para elegir skill; no duplicar TDD local.'
+alwaysApply: false
+---
+# Agent Skills (addyosmani)
+
+Pack instalado en `C:/Users/zelda/agent-skills` (repo canónico, **única copia**). OpenClaw lee `skills/` directo desde ahí (`openclaw.json` → `skills.load.extraDirs`). Cursor **no copia** el pack: usa **junctions** en `c:\Users\zelda\.openclaw\.cursor\skills\<nombre>\` → mismos archivos del clone.
+
+**Actualizar (Cursor + OpenClaw a la vez):**
+
+1. `node .cursor/scripts/sync-agent-skills.mjs` — `git pull` del clone + junctions (skills no commiteadas).
+2. `node .cursor/scripts/sync-engineering-workflow-skills.mjs` — copia skills `engineering-workflow` commiteadas desde el clone (v0.6.2+). Solo enlaces sin pull: `sync-agent-skills.mjs --no-pull`.
+
+**Solo enlaces, sin pull:** `--no-pull` en cualquiera de los dos scripts.
+
+**Skills locales del hub (Karpathy / Alfred):** fuente en `skills/<nombre>/`; Cursor: `node .cursor/scripts/sync-hub-skills.mjs` (junction a `.cursor/skills/<nombre>/`). OpenClaw lee la misma carpeta `skills/` sin copiar.
+
+## Antes de implementar
+
+1. Lee `.cursor/skills/using-agent-skills/SKILL.md` (o `C:/Users/zelda/agent-skills/skills/using-agent-skills/SKILL.md`) para mapear la tarea al workflow correcto.
+2. Sigue el skill elegido al pie de la letra (pasos, verificación, anti-racionalizaciones).
+
+## Enrutado rápido
+
+| Situación | Skill |
+| --- | --- |
+| Requisitos vagos | `interview-me`, `idea-refine` |
+| Nueva feature / cambio grande | `spec-driven-development` → `planning-and-task-breakdown` |
+| Varios archivos | `incremental-implementation` |
+| Tests / lógica | **`.cursor/skills/test-driven-development`** (Superpowers, no el TDD del pack) |
+| UI | `frontend-ui-engineering` |
+| API / contratos | `api-and-interface-design` |
+| Bug / fallo | `debugging-and-error-recovery` |
+| Código (implementar / revisar / refactor) | **`coding-guidelines`** (Karpathy; regla `karpathy-coding-guidelines`) |
+| Antes de merge | `code-review-and-quality` |
+| Simplificar código | `code-simplification` (después de implementar; no sustituye surgical scope) |
+| Auth, input, secretos (Cursor) | **`security-review`** (proyecto); opcional `security-and-hardening` (pack) |
+| Deploy / lanzamiento | `shipping-and-launch` |
+| Logs, métricas, alertas | `observability-and-instrumentation` |
+| Sesión larga / calidad baja | `context-engineering` |
+| Web perf (CWV) | `/webperf` → agente `web-performance-auditor` |
+
+## Evitar conflictos
+
+- **No** uses `agent-skills/skills/test-driven-development` en este workspace: ya existe TDD en `.cursor/skills/test-driven-development` (Superpowers).
+- **Alfred (bot):** `security-guard` en `openclaw.json` sigue siendo la capa del bot; no sustituye `security-review` en Cursor.
+- **`coding-guidelines`** define scope quirúrgico; **`code-simplification`** solo tras pedido explícito o código claramente hinchado — no refactor drive-by.
+- Regla **`karpathy-coding-guidelines`** (alwaysApply) es resumen; el detalle vive en la skill — editar solo `skills/coding-guidelines/`.
+
+## Personas y referencias (bajo demanda)
+
+- Revisión estructurada: `C:/Users/zelda/agent-skills/agents/code-reviewer.md` (o `.cursor/agents/code-reviewer.md`)
+- Web performance: `.cursor/agents/web-performance-auditor.md` (`/webperf`)
+- Checklists: `C:/Users/zelda/agent-skills/references/`

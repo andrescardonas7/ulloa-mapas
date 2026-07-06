@@ -1,0 +1,32 @@
+---
+description: >-
+  Karpathy coding principles (hub summary): think before coding, simplicity
+  first, surgical changes, goal-driven execution. Request for non-trivial
+  coding work; canonical detail lives in the coding-guidelines skill.
+alwaysApply: false
+---
+# Karpathy coding guidelines (hub)
+
+**Canonical detail:** skill `coding-guidelines` (`.cursor/skills/coding-guidelines` → `skills/coding-guidelines/`). Do not duplicate long prose here.
+
+## Four principles (non-trivial coding work)
+
+1. **Think before coding** — State assumptions; if ambiguous, ask (1–2 focused questions). Present tradeoffs when interpretations differ; push back if a simpler approach exists.
+2. **Simplicity first** — Minimum code for the request; no speculative features, abstractions, or config nobody asked for.
+3. **Surgical changes** — Every changed line traces to the request; match existing style; mention unrelated dead code, do not delete it unless asked. Remove only orphans **your** edit created.
+4. **Goal-driven execution** — Define verifiable success criteria; run the project's real checks (`pnpm run check`, tests, lint) before claiming done.
+
+Trivial typo/one-liner: light touch; full rigor on bugs, features, refactors, and reviews.
+
+## Coexistence (this rule does not override)
+
+| Topic | Use |
+|-------|-----|
+| Deep ambiguity / interviews | `clarify-first-prompting`, `interview-me`, `ask-questions-if-underspecified` |
+| Security / secrets / auth | `security-review`, `security-core` |
+| Tests | `.cursor/skills/test-driven-development` (not pack `test-driven-development`) |
+| Before "done" | `verification-before-completion`, `check.mdc` |
+| EPICs / parallel agents | `cursor-agent-orchestration` for **planning only** — diffs stay surgical |
+| Alfred milestone updates | Skill §5 — **OpenClaw channels only**, not IDE chat spam |
+
+**Precedence:** safety → verification → surgical scope → speed.

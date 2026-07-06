@@ -1,0 +1,106 @@
+---
+description: 'Sub-agent orchestration: when and how to invoke role-based agents (planner, code-reviewer, security-reviewer, etc.) in Cursor and Claude Code'
+alwaysApply: false
+---
+
+# Agent orchestration
+
+Personas viven en `.cursor/agents/<name>.md`. Esta regla explica **cuándo** delegar en un rol y **cómo** invocarlo en cada herramienta.
+
+## Inventario real (sincronizado con `.cursor/agents/`)
+
+| Persona               | Propósito                                              | Slash command        |
+| --------------------- | ------------------------------------------------------ | -------------------- |
+| `planner`             | Descomponer features complejas en pasos verificables   | `/plan`              |
+| `architect`           | Decisiones de diseño y trade-offs antes de implementar | —                    |
+| `tdd-guide`           | Guiar red-green-refactor                               | `/tdd`               |
+| `code-reviewer`       | Revisión de calidad y patrones tras cambios            | `/code-review`       |
+| `security-reviewer`   | Revisión de seguridad enfocada en el diff              | `/security-audit`, `/security-scan` |
+| `build-error-resolver`| Resolver errores de build / TypeScript                 | `/build-fix`         |
+| `e2e-runner`          | Ejecutar y arreglar tests end-to-end                   | `/e2e`               |
+| `refactor-cleaner`    | Refactor y limpieza de código muerto                   | `/refactor-clean`    |
+| `doc-updater`         | Actualizar documentación                               | `/update-docs`       |
+| `testing`             | Estrategia y ejecución de tests en general             | `/test-coverage`     |
+| `vercel-engineering`  | Optimización React/Next.js                             | —                    |
+| `mcp-manager`         | Descubrir y ejecutar herramientas MCP fuera del hilo   | `/use-mcp`           |
+| `codescene-standards` | Estándares de calidad CodeScene                        | `/codescene-review`  |
+| `redteam-planner`     | Planificación de engagement red team (alcance autorizado) | — (`@`, `gpt-5.5-medium`) |
+| `reverse-engineer`    | Análisis de binarios, firmware y protocolos            | — (`@`, `gpt-5.5-medium`) |
+| `exploit-researcher`  | Investigación de vulnerabilidades y PoCs               | — (`@`, `gpt-5.5-medium`) |
+| `network-analyst`     | Análisis de tráfico y movimiento lateral                | — (`@`, `gpt-5.5-medium`) |
+| `ai-researcher`       | Seguridad de IA/LLM, alineación y red-teaming de modelos | — (`@`, `inherit`)     |
+
+> Si añades, renombras o eliminas un fichero en `.cursor/agents/`, actualiza esta tabla, `.cursor/agents/README.md` y `.cursor/tests/README.md` en el mismo commit.
+
+### Personas SecOps (sin slash command dedicado)
+
+Estas personas complementan las skills con `metadata.type: offensive` o `defensive` en `.cursor/skills/` (ver `skills/README.md` → **SecOps**). No tienen comando `/` propio: usa `@.cursor/agents/<name>.md` o delega con `Task(subagent_type="generalPurpose", prompt="Aplica .cursor/agents/…")`.
+
+| Persona | Skills relacionadas (ejemplos) |
+| ------- | ------------------------------ |
+| `redteam-planner` | `red-team-ops`, `advanced-redteam`, `initial-access`, `edr-evasion` |
+| `reverse-engineer` | `reverse-engineering`, `malware-analysis`, `crypto-analysis` |
+| `exploit-researcher` | `exploit-development`, `vulnerability-analysis`, `shellcode-dev` |
+| `network-analyst` | `network-attack`, `recon-osint`, `web-pentest`, `cloud-security` |
+| `ai-researcher` | `ai-security`, `agentic-actions-auditor` |
+
+## Cómo invocar un agente
+
+### En Cursor (uso principal)
+
+Cursor **no** carga `.cursor/agents/*.md` como `subagent_type`. Los `subagent_type` válidos del `Task` tool son fijos: `generalPurpose`, `explore`, `shell`, `browser-use`, `cursor-guide`, `best-of-n-runner`, `function-analyzer`. Para usar una persona, elige (en orden de menor coste de contexto):
+
+1. **Slash command** (preferido cuando exista en la tabla). Ej.: `/plan`, `/code-review`, `/security-audit`.
+2. **`@`-mención del fichero**. Ej.: `@.cursor/agents/architect.md` seguido de la tarea.
+3. **Puntero en una sola línea**. Ej.: `Actúa según .cursor/agents/build-error-resolver.md para este turno.`
+4. **Delegación a sub-agente** cuando el trabajo deba aislarse o paralelizarse:
+
+   ```
+   Task(
+     subagent_type="generalPurpose",
+     description="Code review of diff",
+     prompt="Lee y aplica .cursor/agents/code-reviewer.md sobre el diff actual. Devuelve el reporte en el formato del fichero."
+   )
+   ```
+
+   Para revisión exhaustiva por funciones, `function-analyzer` es la opción nativa más cercana a `code-reviewer` / `security-reviewer`.
+
+### En Claude Code
+
+El frontmatter (`name`, `description`, `tools`, `model`) **sí** registra el fichero como sub-agente nativo. Se invoca por nombre (`> Use the planner subagent to ...`) o automáticamente por su `description`. No requiere `@`-mención.
+
+## Cuándo delegar sin pedir confirmación
+
+- Feature compleja o ambigua → `planner` (Cursor: `/plan`).
+- Decisión de diseño con trade-offs → `architect` (Cursor: `@.cursor/agents/architect.md`).
+- Bug fix o feature nueva con tests → `tdd-guide` (Cursor: `/tdd`).
+- Justo después de escribir o modificar código → `code-reviewer` (Cursor: `/code-review`).
+- Cambios que tocan auth, input de usuario, secrets, webhooks, pagos o I/O externo → `security-reviewer` (Cursor: `/security-audit`).
+- Build o `tsc` rotos → `build-error-resolver` (Cursor: `/build-fix`).
+
+## Ejecución en paralelo
+
+Cuando las tareas son independientes, lanza varios `Task` en una sola respuesta:
+
+```
+Task 1: subagent_type="generalPurpose"  → security-reviewer sobre auth.ts
+Task 2: subagent_type="generalPurpose"  → code-reviewer sobre cache/
+Task 3: subagent_type="explore"         → mapear callers de utils.ts
+```
+
+Mal patrón: encadenarlas secuencialmente cuando no comparten estado.
+
+## Análisis multi-perspectiva
+
+Para problemas críticos (diseño, seguridad, regresiones grandes) ejecuta en paralelo varias personas existentes y consolida tú las salidas. Roles típicos:
+
+- `architect` → coherencia de diseño.
+- `code-reviewer` → calidad y mantenibilidad.
+- `security-reviewer` → riesgos explotables en código/config.
+- `redteam-planner` + `network-analyst` → superficie de ataque y detección (engagements autorizados).
+- `reverse-engineer` + `exploit-researcher` → binarios, firmware o PoCs en alcance.
+- `ai-researcher` → riesgos en pipelines con LLM/agentes.
+- `testing` → cobertura y casos límite.
+- `refactor-cleaner` → deuda y duplicación.
+
+No inventes roles que no existan como fichero en `.cursor/agents/`. Si necesitas uno nuevo, créalo allí primero y añádelo a la tabla.

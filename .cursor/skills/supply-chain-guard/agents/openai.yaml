@@ -1,0 +1,4 @@
+interface:
+  display_name: "Supply Chain Guard"
+  short_description: "Harden projects against package and CI/CD supply-chain attacks."
+  default_prompt: "Use this skill to review or design protections against npm, package registry, and CI/CD supply-chain attacks."

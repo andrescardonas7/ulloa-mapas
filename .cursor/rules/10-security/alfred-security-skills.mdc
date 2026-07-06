@@ -1,0 +1,50 @@
+---
+description: 'El agente de Cursor debe tener siempre presentes las skills security-review y secure-workflow-guide. Cargar y aplicar cuando el trabajo toque auth, APIs, secretos o datos sensibles.'
+alwaysApply: false
+---
+# Agente de Cursor – Skills de seguridad siempre presentes
+
+**Nota:** Esta regla aplica al **agente de Cursor** en este workspace (el que te ayuda a programar). No aplica al bot **Alfred** de OpenClaw; Alfred se configura en `.openclaw` y `openclaw.json`.
+
+## Objetivo
+
+En este workspace, **tú (el agente de Cursor)** debes tener siempre presentes las prácticas y skills de seguridad. No son opcionales: forman parte del estándar de trabajo.
+
+## Skills que debes tener presentes
+
+1. **security-review**
+   - **Ruta:** `.cursor/skills/security-review/SKILL.md`
+   - **Usar cuando:** implementes o modifiques autenticación, manejo de inputs de usuario, secretos, endpoints de API, pagos o cualquier flujo con datos sensibles.
+   - **Acción:** Lee el SKILL.md y aplica su checklist (secretos, validación de entrada, auth, OWASP, etc.).
+
+2. **secure-workflow-guide**
+   - **Ruta:** `.cursor/skills/secure-workflow-guide/SKILL.md`
+   - **Usar cuando:** hagas check-in, antes de deploy, o cuando el código implique contratos, Slither, diagramas de seguridad o propiedades verificables.
+   - **Acción:** Lee el SKILL.md y sigue el flujo en 5 pasos (Slither, características especiales, diagramas, propiedades, revisión manual).
+
+3. **npm-supply-chain-security**
+   - **Ruta:** `.cursor/skills/npm-supply-chain-security/SKILL.md`
+   - **Regla asociada:** `.cursor/rules/10-security/npm-supply-chain.mdc` (globs en `package.json`, lockfiles, `.npmrc`)
+   - **Usar cuando:** audites o cambies dependencias npm/pnpm, registry privado, dependency confusion, lockfiles en PR, o hardening post-incidente supply chain.
+   - **Acción:** Lee el SKILL.md; aplica checklist (scopes, `.npmrc`, scripts, cooldown, `npm ci` / frozen lockfile).
+
+## Cuándo cargar estas skills
+
+- **Siempre que el usuario pida algo relacionado con seguridad** (revisión, auditoría, hardening).
+- **Al implementar o tocar:** auth, login, APIs que reciben input, variables de entorno/secretos, pagos, almacenamiento de datos sensibles.
+- **Al preparar un release o merge** a rama principal: considerar al menos security-review.
+- **Al tocar dependencias o lockfiles:** considerar npm-supply-chain-security (y la regla con globs si editas esos archivos).
+- **En proyectos con smart contracts o código crítico:** considerar secure-workflow-guide.
+
+## Cómo aplicarlas
+
+1. **Lee** el `SKILL.md` correspondiente (con la herramienta Read sobre la ruta indicada).
+2. **Aplica** los pasos, checklist o patrones descritos en ese skill antes de dar por cerrado el cambio o la revisión.
+3. No des por terminado trabajo que toque auth, APIs sensibles o secretos sin haber considerado security-review (y secure-workflow-guide si aplica).
+
+**Instrucción explícita:** Antes de implementar o revisar auth, APIs, secretos o datos sensibles, **lee** el contenido de `.cursor/skills/security-review/SKILL.md` (y, si aplica al tipo de proyecto, `.cursor/skills/secure-workflow-guide/SKILL.md`). No omitas este paso; el checklist y el flujo están dentro de esos archivos.
+
+## Relación con el bot Alfred (OpenClaw)
+
+- **Alfred** es el bot de OpenClaw (proyecto en `.openclaw`). Su capa de validación de mensajes es la skill **security-guard**, configurada en `openclaw.json` (prompt injection, allowlist).
+- **security-review** y **secure-workflow-guide** son skills de **Cursor** para el código y el flujo de desarrollo. El agente de Cursor debe tenerlas presentes en este workspace; el bot Alfred no usa archivos `.cursor/skills/`.

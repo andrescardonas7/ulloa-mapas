@@ -1,0 +1,22 @@
+---
+description: 'Principios de seguridad básicos siempre en contexto. Resumen ejecutivo; detalle en security.mdc.'
+alwaysApply: true
+---
+
+# Security core (siempre en contexto)
+
+Resumen de reglas críticas. Para ejemplos y detalle completo, leer [security.mdc](security.mdc) (misma carpeta).
+
+## Reglas que aplican siempre
+
+- **Validación de entrada**: Validar y sanitizar todo input externo (Zod/Yup/Joi, DOMPurify, consultas parametrizadas). Nunca confiar en input de usuario.
+- **Secretos**: Nunca en código. Usar variables de entorno; `.env` en .gitignore; rotar claves; no exponer `.env` al frontend.
+- **HTTPS y headers**: HTTPS en todas las peticiones; configurar Content-Security-Policy, HSTS, X-Content-Type-Options, Referrer-Policy.
+- **CORS**: Lista blanca de orígenes; nunca `cors()` sin restricción.
+- **Comandos**: Nunca ejecutar input de usuario como comando de shell; usar `execFileSync` con argumentos separados.
+- **Auth**: Passwords con bcrypt (cost ≥12); JWT con expiración; no almacenar passwords en claro.
+- **Defense in depth**: Varias capas de control (validación + queries parametrizadas + ORM + WAF) para que un fallo no comprometa todo.
+- **Zero trust**: Verificar siempre; autenticar y autorizar cada petición.
+- **OWASP Top 10**: Revisar periódicamente (inyección, auth rota, datos sensibles, acceso, XSS, dependencias, logging, SSRF). Ver security.mdc.
+
+Cuando implementes o revises auth, APIs, uploads, pagos o datos sensibles, aplica estas reglas y consulta el checklist completo en **security.mdc** y en la skill **security-review** (`.cursor/skills/security-review/SKILL.md`).

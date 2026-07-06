@@ -1,0 +1,24 @@
+---
+description: >-
+  Clean Code (Martin) checklist pointer. Canonical detail in skill
+  clean-code-martin. Request for readability reviews, smell diagnosis, or
+  maintainability refactors — not for dead-code cleanup (/refactor-clean).
+alwaysApply: false
+---
+# Clean Code — Martin (pointer)
+
+This file is a **stub** to avoid duplicating the checklist in the hub.
+
+| Need | Use |
+| ---- | --- |
+| Full checklist (~65 items) | Skill `clean-code-martin` (`.cursor/skills/clean-code-martin/SKILL.md`) |
+| Coexistence vs Karpathy, security, refactor-clean | `clean-code-martin/references/coexistence.md` |
+| Dedicated review pass | `/clean-code-review` |
+| SOLID / DI / layers | `04_code-architecture.mdc` |
+| Dead code removal | `/refactor-clean`, agent `refactor-cleaner` |
+| Surgical implementation style | `karpathy-coding-guidelines.mdc`, skill `coding-guidelines` |
+| Security | `security-core`, `security-review` skill |
+
+**Source:** Robert C. Martin, *Clean Code*; community summary [wojteklu gist](https://gist.github.com/wojteklu/73c6914cc446146b8b533c0988cf8d29).
+
+Do not paste the full checklist here — load the skill when the task needs it.

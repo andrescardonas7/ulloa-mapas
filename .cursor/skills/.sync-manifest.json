@@ -1,0 +1,1231 @@
+{
+  "catalogUpdatedAt": "2026-06-13T17:11:22.852Z",
+  "trailOfBits": {
+    "generatedAt": "2026-05-22T01:36:34.632Z",
+    "source": "vendor/trailofbits-skills/plugins (Trail of Bits)",
+    "dryRun": false,
+    "skillCount": 73,
+    "skills": [
+      {
+        "name": "address-sanitizer",
+        "plugin": "testing-handbook-skills"
+      },
+      {
+        "name": "aflpp",
+        "plugin": "testing-handbook-skills"
+      },
+      {
+        "name": "agentic-actions-auditor",
+        "plugin": "agentic-actions-auditor"
+      },
+      {
+        "name": "algorand-vulnerability-scanner",
+        "plugin": "building-secure-contracts"
+      },
+      {
+        "name": "ask-questions-if-underspecified",
+        "plugin": "ask-questions-if-underspecified"
+      },
+      {
+        "name": "atheris",
+        "plugin": "testing-handbook-skills"
+      },
+      {
+        "name": "audit-augmentation",
+        "plugin": "trailmark"
+      },
+      {
+        "name": "audit-context-building",
+        "plugin": "audit-context-building"
+      },
+      {
+        "name": "audit-prep-assistant",
+        "plugin": "building-secure-contracts"
+      },
+      {
+        "name": "burpsuite-project-parser",
+        "plugin": "burpsuite-project-parser"
+      },
+      {
+        "name": "c-review",
+        "plugin": "c-review"
+      },
+      {
+        "name": "cairo-vulnerability-scanner",
+        "plugin": "building-secure-contracts"
+      },
+      {
+        "name": "cargo-fuzz",
+        "plugin": "testing-handbook-skills"
+      },
+      {
+        "name": "claude-in-chrome-troubleshooting",
+        "plugin": "claude-in-chrome-troubleshooting"
+      },
+      {
+        "name": "code-maturity-assessor",
+        "plugin": "building-secure-contracts"
+      },
+      {
+        "name": "codeql",
+        "plugin": "static-analysis"
+      },
+      {
+        "name": "constant-time-analysis",
+        "plugin": "constant-time-analysis"
+      },
+      {
+        "name": "constant-time-testing",
+        "plugin": "testing-handbook-skills"
+      },
+      {
+        "name": "cosmos-vulnerability-scanner",
+        "plugin": "building-secure-contracts"
+      },
+      {
+        "name": "coverage-analysis",
+        "plugin": "testing-handbook-skills"
+      },
+      {
+        "name": "crypto-protocol-diagram",
+        "plugin": "trailmark"
+      },
+      {
+        "name": "debug-buttercup",
+        "plugin": "debug-buttercup"
+      },
+      {
+        "name": "designing-workflow-skills",
+        "plugin": "workflow-skill-design"
+      },
+      {
+        "name": "devcontainer-setup",
+        "plugin": "devcontainer-setup"
+      },
+      {
+        "name": "diagramming-code",
+        "plugin": "trailmark"
+      },
+      {
+        "name": "differential-review",
+        "plugin": "differential-review"
+      },
+      {
+        "name": "dimensional-analysis",
+        "plugin": "dimensional-analysis"
+      },
+      {
+        "name": "dwarf-expert",
+        "plugin": "dwarf-expert"
+      },
+      {
+        "name": "entry-point-analyzer",
+        "plugin": "entry-point-analyzer"
+      },
+      {
+        "name": "firebase-apk-scanner",
+        "plugin": "firebase-apk-scanner"
+      },
+      {
+        "name": "fp-check",
+        "plugin": "fp-check"
+      },
+      {
+        "name": "fuzzing-dictionary",
+        "plugin": "testing-handbook-skills"
+      },
+      {
+        "name": "fuzzing-obstacles",
+        "plugin": "testing-handbook-skills"
+      },
+      {
+        "name": "genotoxic",
+        "plugin": "trailmark"
+      },
+      {
+        "name": "git-cleanup",
+        "plugin": "git-cleanup"
+      },
+      {
+        "name": "graph-evolution",
+        "plugin": "trailmark"
+      },
+      {
+        "name": "guidelines-advisor",
+        "plugin": "building-secure-contracts"
+      },
+      {
+        "name": "harness-writing",
+        "plugin": "testing-handbook-skills"
+      },
+      {
+        "name": "insecure-defaults",
+        "plugin": "insecure-defaults"
+      },
+      {
+        "name": "interpreting-culture-index",
+        "plugin": "culture-index"
+      },
+      {
+        "name": "let-fate-decide",
+        "plugin": "let-fate-decide"
+      },
+      {
+        "name": "libafl",
+        "plugin": "testing-handbook-skills"
+      },
+      {
+        "name": "libfuzzer",
+        "plugin": "testing-handbook-skills"
+      },
+      {
+        "name": "mermaid-to-proverif",
+        "plugin": "trailmark"
+      },
+      {
+        "name": "modern-python",
+        "plugin": "modern-python"
+      },
+      {
+        "name": "mutation-testing",
+        "plugin": "mutation-testing"
+      },
+      {
+        "name": "ossfuzz",
+        "plugin": "testing-handbook-skills"
+      },
+      {
+        "name": "property-based-testing",
+        "plugin": "property-based-testing"
+      },
+      {
+        "name": "ruzzy",
+        "plugin": "testing-handbook-skills"
+      },
+      {
+        "name": "sarif-parsing",
+        "plugin": "static-analysis"
+      },
+      {
+        "name": "seatbelt-sandboxer",
+        "plugin": "seatbelt-sandboxer"
+      },
+      {
+        "name": "second-opinion",
+        "plugin": "second-opinion"
+      },
+      {
+        "name": "secure-workflow-guide",
+        "plugin": "building-secure-contracts"
+      },
+      {
+        "name": "semgrep",
+        "plugin": "static-analysis"
+      },
+      {
+        "name": "semgrep-rule-creator",
+        "plugin": "semgrep-rule-creator"
+      },
+      {
+        "name": "semgrep-rule-variant-creator",
+        "plugin": "semgrep-rule-variant-creator"
+      },
+      {
+        "name": "sharp-edges",
+        "plugin": "sharp-edges"
+      },
+      {
+        "name": "skill-improver",
+        "plugin": "skill-improver"
+      },
+      {
+        "name": "solana-vulnerability-scanner",
+        "plugin": "building-secure-contracts"
+      },
+      {
+        "name": "spec-to-code-compliance",
+        "plugin": "spec-to-code-compliance"
+      },
+      {
+        "name": "substrate-vulnerability-scanner",
+        "plugin": "building-secure-contracts"
+      },
+      {
+        "name": "supply-chain-risk-auditor",
+        "plugin": "supply-chain-risk-auditor"
+      },
+      {
+        "name": "testing-handbook-generator",
+        "plugin": "testing-handbook-skills"
+      },
+      {
+        "name": "token-integration-analyzer",
+        "plugin": "building-secure-contracts"
+      },
+      {
+        "name": "ton-vulnerability-scanner",
+        "plugin": "building-secure-contracts"
+      },
+      {
+        "name": "trailmark",
+        "plugin": "trailmark"
+      },
+      {
+        "name": "trailmark-structural",
+        "plugin": "trailmark"
+      },
+      {
+        "name": "trailmark-summary",
+        "plugin": "trailmark"
+      },
+      {
+        "name": "variant-analysis",
+        "plugin": "variant-analysis"
+      },
+      {
+        "name": "vector-forge",
+        "plugin": "trailmark"
+      },
+      {
+        "name": "wycheproof",
+        "plugin": "testing-handbook-skills"
+      },
+      {
+        "name": "yara-rule-authoring",
+        "plugin": "yara-authoring"
+      },
+      {
+        "name": "zeroize-audit",
+        "plugin": "zeroize-audit"
+      }
+    ]
+  },
+  "hubLocal": {
+    "updatedAt": "2026-06-13T12:00:00.000Z",
+    "note": "Hub-maintained skills (not overwritten by sync-trailofbits-skills.mjs, sync-cyber-skills.mjs, sync-pm-skills.mjs, sync-agent-skills.mjs, or sync-anysearch-skill.mjs except scripts/assets). Flat layout under skills/<name>/SKILL.md.",
+    "skillCount": 43,
+    "skills": [
+      {
+        "name": "using-agent-skills",
+        "pack": "engineering-workflow",
+        "role": "meta-router"
+      },
+      {
+        "name": "interview-me",
+        "pack": "engineering-workflow"
+      },
+      {
+        "name": "idea-refine",
+        "pack": "engineering-workflow"
+      },
+      {
+        "name": "spec-driven-development",
+        "pack": "engineering-workflow"
+      },
+      {
+        "name": "planning-and-task-breakdown",
+        "pack": "engineering-workflow"
+      },
+      {
+        "name": "incremental-implementation",
+        "pack": "engineering-workflow"
+      },
+      {
+        "name": "source-driven-development",
+        "pack": "engineering-workflow"
+      },
+      {
+        "name": "doubt-driven-development",
+        "pack": "engineering-workflow"
+      },
+      {
+        "name": "frontend-ui-engineering",
+        "pack": "engineering-workflow"
+      },
+      {
+        "name": "api-and-interface-design",
+        "pack": "engineering-workflow"
+      },
+      {
+        "name": "browser-testing-with-devtools",
+        "pack": "engineering-workflow"
+      },
+      {
+        "name": "debugging-and-error-recovery",
+        "pack": "engineering-workflow"
+      },
+      {
+        "name": "code-review-and-quality",
+        "pack": "engineering-workflow"
+      },
+      {
+        "name": "security-and-hardening",
+        "pack": "engineering-workflow"
+      },
+      {
+        "name": "performance-optimization",
+        "pack": "engineering-workflow"
+      },
+      {
+        "name": "code-simplification",
+        "pack": "engineering-workflow"
+      },
+      {
+        "name": "git-workflow-and-versioning",
+        "pack": "engineering-workflow"
+      },
+      {
+        "name": "ci-cd-and-automation",
+        "pack": "engineering-workflow"
+      },
+      {
+        "name": "documentation-and-adrs",
+        "pack": "engineering-workflow"
+      },
+      {
+        "name": "deprecation-and-migration",
+        "pack": "engineering-workflow"
+      },
+      {
+        "name": "shipping-and-launch",
+        "pack": "engineering-workflow"
+      },
+      {
+        "name": "observability-and-instrumentation",
+        "pack": "engineering-workflow"
+      },
+      {
+        "name": "coding-guidelines",
+        "pack": "hub-behavior",
+        "source": "andrej-karpathy-skills (adapted)"
+      },
+      {
+        "name": "api-key-security",
+        "pack": "hub-security"
+      },
+      {
+        "name": "npm-supply-chain-security",
+        "pack": "hub-security",
+        "note": "Complements npm-supply-chain-guard (ToB); Lirantal-style hardening"
+      },
+      {
+        "name": "code-hardcode-audit",
+        "pack": "hub-security"
+      },
+      {
+        "name": "agents-best-practices",
+        "pack": "hub-meta",
+        "source": "https://github.com/DenisSergeevitch/agents-best-practices (MIT v1.2.0)",
+        "note": "Provider-neutral harness design; markdown-only; trust-audited on import"
+      },
+      {
+        "name": "skill-design-philosophy",
+        "pack": "hub-meta"
+      },
+      {
+        "name": "find-skills",
+        "pack": "hub-meta"
+      },
+      {
+        "name": "update-changelog",
+        "pack": "hub-tooling",
+        "source": "mitsuhiko/agent-stuff (adapted)"
+      },
+      {
+        "name": "remote-repo-cache",
+        "pack": "hub-tooling"
+      },
+      {
+        "name": "skill-trust-audit",
+        "pack": "hub-meta",
+        "note": "Required after add/change; see skills-audit-policy.mdc"
+      },
+      {
+        "name": "using-cyber-skills",
+        "pack": "hub-meta",
+        "note": "Router: SecOps playbooks vs anthropicCyber granular skills; see SYNC-ANTHROPIC-CYBER.md"
+      },
+      {
+        "name": "using-pm-skills",
+        "pack": "hub-meta",
+        "note": "Router: PM marketplace (pmSkills) vs engineering workflow; see SYNC-PM-SKILLS.md"
+      },
+      {
+        "name": "context-engineering",
+        "pack": "hub-behavior",
+        "note": "Committed hub copy; protected from sync-agent-skills.mjs clobbering"
+      },
+      {
+        "name": "using-obsidian",
+        "pack": "obsidian-pkm",
+        "role": "meta-router",
+        "note": "Router for Obsidian / PKM workflows. Entry point for all obsidian-* and defuddle skills."
+      },
+      {
+        "name": "obsidian-markdown",
+        "pack": "obsidian-pkm",
+        "source": "kepano/obsidian-skills (MIT)"
+      },
+      {
+        "name": "obsidian-bases",
+        "pack": "obsidian-pkm",
+        "source": "kepano/obsidian-skills (MIT)"
+      },
+      {
+        "name": "json-canvas",
+        "pack": "obsidian-pkm",
+        "source": "kepano/obsidian-skills (MIT)"
+      },
+      {
+        "name": "obsidian-cli",
+        "pack": "obsidian-pkm",
+        "source": "kepano/obsidian-skills (MIT)"
+      },
+      {
+        "name": "defuddle",
+        "pack": "obsidian-pkm",
+        "source": "kepano/obsidian-skills (MIT)",
+        "note": "High-signal web-to-vault intake. Preferred over WebFetch for research articles."
+      },
+      {
+        "name": "css-protips",
+        "pack": "hub-front-end",
+        "source": "AllThingsSmitty/css-protips (CC0); hub adaptation"
+      },
+      {
+        "name": "anysearch",
+        "pack": "hub-research",
+        "source": "https://github.com/anysearch-ai/anysearch-skill (Apache-2.0)",
+        "upstreamVersion": "2.1.0",
+        "syncedAt": "2026-06-13T17:04:03.374Z",
+        "note": "Real-time search + vertical domains + extract. Sync: sync-anysearch-skill.mjs. Router vs defuddle/parallel-web in SKILL.md."
+      }
+    ],
+    "engineeringWorkflow": {
+      "updatedAt": "2026-06-13T17:11:17.021Z",
+      "upstream": "https://github.com/addyosmani/agent-skills",
+      "upstreamDescribe": "(pull skipped)",
+      "skillCount": 22,
+      "excluded": [
+        "test-driven-development",
+        "context-engineering"
+      ]
+    }
+  },
+  "anthropicCyber": {
+    "generatedAt": "2026-05-28T15:45:03.786Z",
+    "source": "vendor/anthropic-cybersecurity-skills/skills (mukul975/Anthropic-Cybersecurity-Skills)",
+    "upstream": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills",
+    "allowlistFile": ".cursor/scripts/cyber-skills-allowlist.json",
+    "dryRun": false,
+    "skillCount": 58,
+    "domains": {
+      "threat-intelligence": 10,
+      "digital-forensics": 10,
+      "soc-operations": 8,
+      "container-security": 8,
+      "ai-security": 6,
+      "incident-response": 6,
+      "security-operations": 6,
+      "endpoint-security": 4
+    },
+    "skills": [
+      {
+        "name": "processing-stix-taxii-feeds",
+        "subdomain": "threat-intelligence"
+      },
+      {
+        "name": "performing-threat-intelligence-sharing-with-misp",
+        "subdomain": "threat-intelligence"
+      },
+      {
+        "name": "implementing-stix-taxii-feed-integration",
+        "subdomain": "threat-intelligence"
+      },
+      {
+        "name": "analyzing-threat-actor-ttps-with-mitre-attack",
+        "subdomain": "threat-intelligence"
+      },
+      {
+        "name": "analyzing-indicators-of-compromise",
+        "subdomain": "threat-intelligence"
+      },
+      {
+        "name": "performing-ioc-enrichment-automation",
+        "subdomain": "threat-intelligence"
+      },
+      {
+        "name": "profiling-threat-actor-groups",
+        "subdomain": "threat-intelligence"
+      },
+      {
+        "name": "analyzing-threat-intelligence-feeds",
+        "subdomain": "threat-intelligence"
+      },
+      {
+        "name": "implementing-diamond-model-analysis",
+        "subdomain": "threat-intelligence"
+      },
+      {
+        "name": "mapping-mitre-attack-techniques",
+        "subdomain": "threat-intelligence"
+      },
+      {
+        "name": "performing-memory-forensics-with-volatility3",
+        "subdomain": "digital-forensics"
+      },
+      {
+        "name": "acquiring-disk-image-with-dd-and-dcfldd",
+        "subdomain": "digital-forensics"
+      },
+      {
+        "name": "analyzing-disk-image-with-autopsy",
+        "subdomain": "digital-forensics"
+      },
+      {
+        "name": "building-incident-timeline-with-timesketch",
+        "subdomain": "digital-forensics"
+      },
+      {
+        "name": "analyzing-mft-for-deleted-file-recovery",
+        "subdomain": "digital-forensics"
+      },
+      {
+        "name": "analyzing-lnk-file-and-jump-list-artifacts",
+        "subdomain": "digital-forensics"
+      },
+      {
+        "name": "analyzing-linux-system-artifacts",
+        "subdomain": "digital-forensics"
+      },
+      {
+        "name": "analyzing-email-headers-for-phishing-investigation",
+        "subdomain": "digital-forensics"
+      },
+      {
+        "name": "analyzing-browser-forensics-with-hindsight",
+        "subdomain": "digital-forensics"
+      },
+      {
+        "name": "analyzing-docker-container-forensics",
+        "subdomain": "digital-forensics"
+      },
+      {
+        "name": "building-detection-rules-with-sigma",
+        "subdomain": "soc-operations"
+      },
+      {
+        "name": "building-detection-rule-with-splunk-spl",
+        "subdomain": "soc-operations"
+      },
+      {
+        "name": "analyzing-windows-event-logs-in-splunk",
+        "subdomain": "soc-operations"
+      },
+      {
+        "name": "triaging-security-alerts-in-splunk",
+        "subdomain": "soc-operations"
+      },
+      {
+        "name": "building-soc-escalation-matrix",
+        "subdomain": "soc-operations"
+      },
+      {
+        "name": "building-soc-metrics-and-kpi-tracking",
+        "subdomain": "soc-operations"
+      },
+      {
+        "name": "building-incident-response-dashboard",
+        "subdomain": "soc-operations"
+      },
+      {
+        "name": "analyzing-dns-logs-for-exfiltration",
+        "subdomain": "soc-operations"
+      },
+      {
+        "name": "detecting-container-escape-with-falco-rules",
+        "subdomain": "container-security"
+      },
+      {
+        "name": "detecting-container-escape-attempts",
+        "subdomain": "container-security"
+      },
+      {
+        "name": "detecting-privilege-escalation-in-kubernetes-pods",
+        "subdomain": "container-security"
+      },
+      {
+        "name": "analyzing-kubernetes-audit-logs",
+        "subdomain": "container-security"
+      },
+      {
+        "name": "hardening-docker-containers-for-production",
+        "subdomain": "container-security"
+      },
+      {
+        "name": "hardening-docker-daemon-configuration",
+        "subdomain": "container-security"
+      },
+      {
+        "name": "detecting-container-drift-at-runtime",
+        "subdomain": "container-security"
+      },
+      {
+        "name": "implementing-container-image-minimal-base-with-distroless",
+        "subdomain": "container-security"
+      },
+      {
+        "name": "detecting-ai-model-prompt-injection-attacks",
+        "subdomain": "ai-security"
+      },
+      {
+        "name": "implementing-llm-guardrails-for-security",
+        "subdomain": "ai-security"
+      },
+      {
+        "name": "performing-threat-modeling-with-owasp-threat-dragon",
+        "subdomain": "ai-security"
+      },
+      {
+        "name": "implementing-threat-modeling-with-mitre-attack",
+        "subdomain": "ai-security"
+      },
+      {
+        "name": "analyzing-sbom-for-supply-chain-vulnerabilities",
+        "subdomain": "ai-security"
+      },
+      {
+        "name": "detecting-anomalies-in-industrial-control-systems",
+        "subdomain": "ai-security"
+      },
+      {
+        "name": "analyzing-security-logs-with-splunk",
+        "subdomain": "incident-response"
+      },
+      {
+        "name": "analyzing-network-traffic-for-incidents",
+        "subdomain": "incident-response"
+      },
+      {
+        "name": "analyzing-linux-audit-logs-for-intrusion",
+        "subdomain": "incident-response"
+      },
+      {
+        "name": "building-incident-response-playbook",
+        "subdomain": "incident-response"
+      },
+      {
+        "name": "triaging-security-incident-with-ir-playbook",
+        "subdomain": "incident-response"
+      },
+      {
+        "name": "building-malware-incident-communication-template",
+        "subdomain": "incident-response"
+      },
+      {
+        "name": "analyzing-powershell-script-block-logging",
+        "subdomain": "security-operations"
+      },
+      {
+        "name": "analyzing-web-server-logs-for-intrusion",
+        "subdomain": "security-operations"
+      },
+      {
+        "name": "analyzing-azure-activity-logs-for-threats",
+        "subdomain": "security-operations"
+      },
+      {
+        "name": "analyzing-api-gateway-access-logs",
+        "subdomain": "security-operations"
+      },
+      {
+        "name": "analyzing-tls-certificate-transparency-logs",
+        "subdomain": "security-operations"
+      },
+      {
+        "name": "analyzing-memory-forensics-with-lime-and-volatility",
+        "subdomain": "security-operations"
+      },
+      {
+        "name": "configuring-windows-event-logging-for-detection",
+        "subdomain": "endpoint-security"
+      },
+      {
+        "name": "configuring-host-based-intrusion-detection",
+        "subdomain": "endpoint-security"
+      },
+      {
+        "name": "configuring-windows-defender-advanced-settings",
+        "subdomain": "endpoint-security"
+      },
+      {
+        "name": "deploying-edr-agent-with-crowdstrike",
+        "subdomain": "endpoint-security"
+      }
+    ]
+  },
+  "pmSkills": {
+    "generatedAt": "2026-06-13T17:11:22.854Z",
+    "source": "vendor/phuryn-pm-skills (phuryn/pm-skills)",
+    "upstream": "https://github.com/phuryn/pm-skills",
+    "license": "MIT",
+    "dryRun": false,
+    "skillCount": 68,
+    "commandCount": 42,
+    "plugins": {
+      "pm-data-analytics": 3,
+      "pm-product-discovery": 13,
+      "pm-product-strategy": 12,
+      "pm-go-to-market": 6,
+      "pm-execution": 16,
+      "pm-market-research": 7,
+      "pm-toolkit": 4,
+      "pm-ai-shipping": 2,
+      "pm-marketing-growth": 5
+    },
+    "skills": [
+      {
+        "name": "ab-test-analysis",
+        "plugin": "pm-data-analytics"
+      },
+      {
+        "name": "analyze-feature-requests",
+        "plugin": "pm-product-discovery"
+      },
+      {
+        "name": "ansoff-matrix",
+        "plugin": "pm-product-strategy"
+      },
+      {
+        "name": "beachhead-segment",
+        "plugin": "pm-go-to-market"
+      },
+      {
+        "name": "brainstorm-experiments-existing",
+        "plugin": "pm-product-discovery"
+      },
+      {
+        "name": "brainstorm-experiments-new",
+        "plugin": "pm-product-discovery"
+      },
+      {
+        "name": "brainstorm-ideas-existing",
+        "plugin": "pm-product-discovery"
+      },
+      {
+        "name": "brainstorm-ideas-new",
+        "plugin": "pm-product-discovery"
+      },
+      {
+        "name": "brainstorm-okrs",
+        "plugin": "pm-execution"
+      },
+      {
+        "name": "business-model",
+        "plugin": "pm-product-strategy"
+      },
+      {
+        "name": "cohort-analysis",
+        "plugin": "pm-data-analytics"
+      },
+      {
+        "name": "competitive-battlecard",
+        "plugin": "pm-go-to-market"
+      },
+      {
+        "name": "competitor-analysis",
+        "plugin": "pm-market-research"
+      },
+      {
+        "name": "create-prd",
+        "plugin": "pm-execution"
+      },
+      {
+        "name": "customer-journey-map",
+        "plugin": "pm-market-research"
+      },
+      {
+        "name": "draft-nda",
+        "plugin": "pm-toolkit"
+      },
+      {
+        "name": "dummy-dataset",
+        "plugin": "pm-execution"
+      },
+      {
+        "name": "grammar-check",
+        "plugin": "pm-toolkit"
+      },
+      {
+        "name": "growth-loops",
+        "plugin": "pm-go-to-market"
+      },
+      {
+        "name": "gtm-motions",
+        "plugin": "pm-go-to-market"
+      },
+      {
+        "name": "gtm-strategy",
+        "plugin": "pm-go-to-market"
+      },
+      {
+        "name": "ideal-customer-profile",
+        "plugin": "pm-go-to-market"
+      },
+      {
+        "name": "identify-assumptions-existing",
+        "plugin": "pm-product-discovery"
+      },
+      {
+        "name": "identify-assumptions-new",
+        "plugin": "pm-product-discovery"
+      },
+      {
+        "name": "intended-vs-implemented",
+        "plugin": "pm-ai-shipping"
+      },
+      {
+        "name": "interview-script",
+        "plugin": "pm-product-discovery"
+      },
+      {
+        "name": "job-stories",
+        "plugin": "pm-execution"
+      },
+      {
+        "name": "lean-canvas",
+        "plugin": "pm-product-strategy"
+      },
+      {
+        "name": "market-segments",
+        "plugin": "pm-market-research"
+      },
+      {
+        "name": "market-sizing",
+        "plugin": "pm-market-research"
+      },
+      {
+        "name": "marketing-ideas",
+        "plugin": "pm-marketing-growth"
+      },
+      {
+        "name": "metrics-dashboard",
+        "plugin": "pm-product-discovery"
+      },
+      {
+        "name": "monetization-strategy",
+        "plugin": "pm-product-strategy"
+      },
+      {
+        "name": "north-star-metric",
+        "plugin": "pm-marketing-growth"
+      },
+      {
+        "name": "opportunity-solution-tree",
+        "plugin": "pm-product-discovery"
+      },
+      {
+        "name": "outcome-roadmap",
+        "plugin": "pm-execution"
+      },
+      {
+        "name": "pestle-analysis",
+        "plugin": "pm-product-strategy"
+      },
+      {
+        "name": "porters-five-forces",
+        "plugin": "pm-product-strategy"
+      },
+      {
+        "name": "positioning-ideas",
+        "plugin": "pm-marketing-growth"
+      },
+      {
+        "name": "pre-mortem",
+        "plugin": "pm-execution"
+      },
+      {
+        "name": "pricing-strategy",
+        "plugin": "pm-product-strategy"
+      },
+      {
+        "name": "prioritization-frameworks",
+        "plugin": "pm-execution"
+      },
+      {
+        "name": "prioritize-assumptions",
+        "plugin": "pm-product-discovery"
+      },
+      {
+        "name": "prioritize-features",
+        "plugin": "pm-product-discovery"
+      },
+      {
+        "name": "privacy-policy",
+        "plugin": "pm-toolkit"
+      },
+      {
+        "name": "product-name",
+        "plugin": "pm-marketing-growth"
+      },
+      {
+        "name": "product-strategy",
+        "plugin": "pm-product-strategy"
+      },
+      {
+        "name": "product-vision",
+        "plugin": "pm-product-strategy"
+      },
+      {
+        "name": "release-notes",
+        "plugin": "pm-execution"
+      },
+      {
+        "name": "retro",
+        "plugin": "pm-execution"
+      },
+      {
+        "name": "review-resume",
+        "plugin": "pm-toolkit"
+      },
+      {
+        "name": "sentiment-analysis",
+        "plugin": "pm-market-research"
+      },
+      {
+        "name": "shipping-artifacts",
+        "plugin": "pm-ai-shipping"
+      },
+      {
+        "name": "sprint-plan",
+        "plugin": "pm-execution"
+      },
+      {
+        "name": "sql-queries",
+        "plugin": "pm-data-analytics"
+      },
+      {
+        "name": "stakeholder-map",
+        "plugin": "pm-execution"
+      },
+      {
+        "name": "startup-canvas",
+        "plugin": "pm-product-strategy"
+      },
+      {
+        "name": "strategy-red-team",
+        "plugin": "pm-execution"
+      },
+      {
+        "name": "summarize-interview",
+        "plugin": "pm-product-discovery"
+      },
+      {
+        "name": "summarize-meeting",
+        "plugin": "pm-execution"
+      },
+      {
+        "name": "swot-analysis",
+        "plugin": "pm-product-strategy"
+      },
+      {
+        "name": "test-scenarios",
+        "plugin": "pm-execution"
+      },
+      {
+        "name": "user-personas",
+        "plugin": "pm-market-research"
+      },
+      {
+        "name": "user-segmentation",
+        "plugin": "pm-market-research"
+      },
+      {
+        "name": "user-stories",
+        "plugin": "pm-execution"
+      },
+      {
+        "name": "value-prop-statements",
+        "plugin": "pm-marketing-growth"
+      },
+      {
+        "name": "value-proposition",
+        "plugin": "pm-product-strategy"
+      },
+      {
+        "name": "wwas",
+        "plugin": "pm-execution"
+      }
+    ],
+    "commands": [
+      {
+        "name": "analyze-cohorts",
+        "plugin": "pm-data-analytics"
+      },
+      {
+        "name": "analyze-feedback",
+        "plugin": "pm-market-research"
+      },
+      {
+        "name": "analyze-test",
+        "plugin": "pm-data-analytics"
+      },
+      {
+        "name": "battlecard",
+        "plugin": "pm-go-to-market"
+      },
+      {
+        "name": "brainstorm",
+        "plugin": "pm-product-discovery"
+      },
+      {
+        "name": "business-model",
+        "plugin": "pm-product-strategy"
+      },
+      {
+        "name": "competitive-analysis",
+        "plugin": "pm-market-research"
+      },
+      {
+        "name": "derive-tests",
+        "plugin": "pm-ai-shipping"
+      },
+      {
+        "name": "discover",
+        "plugin": "pm-product-discovery"
+      },
+      {
+        "name": "document-app",
+        "plugin": "pm-ai-shipping"
+      },
+      {
+        "name": "draft-nda",
+        "plugin": "pm-toolkit"
+      },
+      {
+        "name": "generate-data",
+        "plugin": "pm-execution"
+      },
+      {
+        "name": "growth-strategy",
+        "plugin": "pm-go-to-market"
+      },
+      {
+        "name": "interview",
+        "plugin": "pm-product-discovery"
+      },
+      {
+        "name": "market-product",
+        "plugin": "pm-marketing-growth"
+      },
+      {
+        "name": "market-scan",
+        "plugin": "pm-product-strategy"
+      },
+      {
+        "name": "meeting-notes",
+        "plugin": "pm-execution"
+      },
+      {
+        "name": "north-star",
+        "plugin": "pm-marketing-growth"
+      },
+      {
+        "name": "performance-audit-static",
+        "plugin": "pm-ai-shipping"
+      },
+      {
+        "name": "plan-launch",
+        "plugin": "pm-go-to-market"
+      },
+      {
+        "name": "plan-okrs",
+        "plugin": "pm-execution"
+      },
+      {
+        "name": "pre-mortem",
+        "plugin": "pm-execution"
+      },
+      {
+        "name": "pricing",
+        "plugin": "pm-product-strategy"
+      },
+      {
+        "name": "privacy-policy",
+        "plugin": "pm-toolkit"
+      },
+      {
+        "name": "proofread",
+        "plugin": "pm-toolkit"
+      },
+      {
+        "name": "red-team-prd",
+        "plugin": "pm-execution"
+      },
+      {
+        "name": "research-users",
+        "plugin": "pm-market-research"
+      },
+      {
+        "name": "review-resume",
+        "plugin": "pm-toolkit"
+      },
+      {
+        "name": "security-audit-static",
+        "plugin": "pm-ai-shipping"
+      },
+      {
+        "name": "setup-metrics",
+        "plugin": "pm-product-discovery"
+      },
+      {
+        "name": "ship-check",
+        "plugin": "pm-ai-shipping"
+      },
+      {
+        "name": "sprint",
+        "plugin": "pm-execution"
+      },
+      {
+        "name": "stakeholder-map",
+        "plugin": "pm-execution"
+      },
+      {
+        "name": "strategy",
+        "plugin": "pm-product-strategy"
+      },
+      {
+        "name": "tailor-resume",
+        "plugin": "pm-toolkit"
+      },
+      {
+        "name": "test-scenarios",
+        "plugin": "pm-execution"
+      },
+      {
+        "name": "transform-roadmap",
+        "plugin": "pm-execution"
+      },
+      {
+        "name": "triage-requests",
+        "plugin": "pm-product-discovery"
+      },
+      {
+        "name": "value-proposition",
+        "plugin": "pm-product-strategy"
+      },
+      {
+        "name": "write-prd",
+        "plugin": "pm-execution"
+      },
+      {
+        "name": "write-query",
+        "plugin": "pm-data-analytics"
+      },
+      {
+        "name": "write-stories",
+        "plugin": "pm-execution"
+      }
+    ]
+  }
+}
