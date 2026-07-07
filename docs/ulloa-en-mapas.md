@@ -1,26 +1,49 @@
+# Ulloa en Mapas — Portal Web de Gestión del Riesgo de Desastres
 
+## Contexto general
 
-PROMPT ESTRUCTURADO: Portal Web de Gestión del Riesgo de Desastres: Nombre Ulloa en Mapas.
+### Objetivo del proyecto
 
-## 📋 CONTEXTO GENERAL
-
-### Objetivo del Proyecto
 Crear un **portal web público** de acceso libre donde los ciudadanos, funcionarios y estudiantes puedan visualizar capas de información geográfica relacionadas con la **gestión del riesgo de desastres** y planeación en el municipio de Ulloa, Valle del Cauca.
 
 ---
 
-## 🏗️ ARQUITECTURA TÉCNICA DECIDIDA
+## Arquitectura técnica
 
+### Stack del sitio web
 
+| Capa | Tecnología |
+|------|------------|
+| Frontend | Next.js 16 (App Router) + React 19 + TypeScript |
+| Estilos | Tailwind CSS 4 |
+| Mapas | Embed vía iframe (proveedor configurable) |
+| Documentos | Fuente local de ejemplo (`src/lib/documents.ts`); almacenamiento definitivo pendiente de decidir |
+| Despliegue | Vercel (recomendado) |
 
-## 📦 DATOS DE ORIGEN
+### Plataforma GIS (flexible)
+
+El sitio **no está acoplado a un solo proveedor**. Los mapas se embeben desde cualquiera de estas plataformas:
+
+| Proveedor | Uso típico | URL de embed |
+|-----------|------------|--------------|
+| **ArcGIS Online** | Web Maps / Web Apps | URL de embed de ArcGIS Experience Builder o Web AppBuilder |
+| **CARTO** | CARTO Builder | URL de embed desde Sharing & Collaboration |
+| **QGIS Server / QGIS Cloud** | Servicios WMS/WFS publicados | URL del visor web o iframe del proyecto |
+
+Las URLs se configuran en `.env.local` (ver `.env.local.example`). Añadir un mapa nuevo = agregar entrada en `src/lib/mapConfig.ts` + variable de entorno.
+
+---
+
+## Datos de origen
 
 ### Fuente de datos
+
 - **Formato original:** File Geodatabase (.gdb) de Esri
 - **Contenido:** Capas vectoriales de gestión del riesgo de desastres
 
 ### Proceso de conversión requerido
-La plataforma CARTO cloud-native actual **no soporta importación directa de .gdb**. Se requiere convertir cada feature class a formato individual (GeoPackage recomendado o GeoJSON):
+
+CARTO y la mayoría de plataformas cloud **no soportan importación directa de .gdb**. Se requiere convertir cada feature class a formato individual (GeoPackage recomendado o GeoJSON):
 
 ```bash
 # Listar capas dentro del .gdb
@@ -29,94 +52,119 @@ ogrinfo "mi_geodatabase.gdb"
 # Convertir cada capa a GeoPackage individual
 ogr2ogr -f "GPKG" salida_capa.gpkg "mi_geodatabase.gdb" "nombre_feature_class"
 ```
---
 
+Este paso aplica independientemente del proveedor GIS elegido para publicar los mapas.
 
-## 🌐 ESTRUCTURA DEL SITIO WEB
+---
+
+## Estructura del sitio web
 
 ### Páginas del portal
 
-| Página | Contenido | Mapa embebido |
-|---|---|---|
-| **Inicio** | Introducción al riesgo de desastres en Cartago, noticias, alertas vigentes | No |
-| **Visor de mapas** | Iframe con el mapa maestro (todas las capas, widgets interactivos) | Mapa maestro |
-| **Amenazas** | Descripción de cada amenaza, metodología, iframe con mapa de amenazas | Mapa de amenazas |
-| **Exposición y vulnerabilidad** | Estadísticas de población expuesta, infraestructura crítica | Mapa de exposición |
-| **Análisis de riesgo** | Zonificación de riesgo, mapas de intersección | Mapa de análisis |
-| **Dashboards** | Indicadores, gráficos, estadísticas (un iframe por página) | Mapa dashboard |
-| **Descargas** | Documentos, PDFs, metodología, datos abiertos | No |
-| **Documentación** | Marco normativo, planes de contingencia, protocolos | No |
-| **Contacto** | Formulario para reportar eventos o riesgos | No |
+| Página | Ruta | Contenido | Mapa embebido |
+|--------|------|-----------|---------------|
+| **Inicio** | `/` | Introducción, CTA, alertas informativas | No |
+| **Visor** | `/visor` | Todos los mapas (maestro, amenazas, exposición, análisis) en tabs | Sí (uno a la vez) |
+| **Dashboards** | `/dashboards` | Indicadores, gráficos, estadísticas | Sí (uno a la vez) |
+| **Descargas** | `/descargas` | Documentos, PDFs, metodología, datos abiertos | No |
+| **Documentación** | `/documentacion` | Marco normativo, planes de contingencia, protocolos | No |
+| **Acerca de** | `/acerca-de` | Qué es Ulloa en Mapas, propósito y alcance | No |
+
+### Páginas excluidas (por ahora)
+
+| Página | Motivo |
+|--------|--------|
+| **Contacto** | Requiere backend (email, antispam, moderación) para ser útil. Un formulario sin backend genera falsas expectativas en temas de emergencia. Se puede añadir en una fase posterior. |
 
 ### Reglas de diseño del sitio
-- **Un iframe por página visible** (nunca múltiples mapas simultáneos)
+
+- **Un iframe visible a la vez** (nunca múltiples mapas simultáneos)
 - Si se usan tabs, disparar resize del iframe al activar el tab
-- Estilo neutro: quitar branding de CARTO del iframe
+- Quitar branding del proveedor GIS en el iframe cuando sea posible
 - Diseño responsive (móvil, tablet, desktop)
 - Navegación clara con menú principal
 
 ---
 
-## 🎨 PALETA DE COLORES SUGERIDA PARA RIESGO
+## Paleta de colores
 
-| Categoría | Color | Hex |
-|---|---|---|
-| Riesgo alto | Rojo | #d7301f |
-| Riesgo medio | Naranja | #fc8d59 |
-| Riesgo bajo | Amarillo | #fee08b |
-| Sin riesgo | Verde | #91cf60 |
-| Infraestructura crítica | Azul | #2d5f8a |
-| Áreas protegidas | Verde oscuro | #1a9850 |
-| Cuerpos de agua | Azul claro | #91bfdb |
-| Zonas urbanas | Gris | #525252 |
+| Uso | Color | Hex |
+|-----|-------|-----|
+| Primario / riesgo alto | Rojo | `#D91424` |
+| Acento / agua / UI secundaria | Azul cielo | `#84C1D9` |
+| Seguro / sin riesgo | Verde | `#088C29` |
+| Alerta / precaución | Amarillo | `#FDDC08` |
+| Texto y fondos oscuros | Negro | `#0D0D0D` |
+| Riesgo medio | Ámbar | `#E8A317` |
+
+Implementadas como variables CSS en `src/app/globals.css` (`--brand-red`, `--brand-sky`, etc.).
 
 ---
 
-## ⚠️ CONSIDERACIONES TÉCNICAS
+## Consideraciones técnicas
 
 ### Rendimiento
-- **Un iframe por página**: múltiples iframes simultáneos consumen RAM excesiva por los vector tiles
-- **Dynamic Tiling**: CARTO genera tiles on-the-fly desde el data warehouse, sin pre-procesamiento
+
+- **Un iframe visible a la vez**: múltiples iframes simultáneos consumen RAM excesiva
 - Si el dataset es muy grande, considerar simplificación de geometrías antes de importar
+- CARTO: dynamic tiling on-the-fly; ArcGIS: tiles precalculados; QGIS: depende de la configuración del servidor
 
 ### Limitaciones del embedding con iframe
-- No se puede manipular el mapa con JavaScript desde el sitio (excepto vía URL parameters)
-- El estilo de widgets y popups está limitado a lo que Builder permite
-- Si CARTO tiene downtime, los mapas embebidos no cargan (SLA 99.9% en enterprise)
+
+- No se puede manipular el mapa con JavaScript desde el sitio (excepto vía URL parameters del proveedor)
+- El estilo de widgets y popups está limitado a lo que cada plataforma permite
+- Si el proveedor GIS tiene downtime, los mapas embebidos no cargan
 
 ### Optimización de datos
+
 - Reducir campos de texto al mínimo necesario
 - Usar enteros en lugar de decimales cuando sea posible
 - Eliminar feature classes innecesarias antes de importar
 - Publicar en Web Mercator (EPSG:3857) para evitar reproyecciones
 
 ### Seguridad
+
 - El acceso es público libre (sin autenticación de usuarios)
-- Las queries no van directas al data warehouse: pasan por los APIs de CARTO
 - No exponer API keys en el código fuente del sitio
+- Las URLs de embed son públicas por naturaleza; no incluir tokens sensibles en ellas
+
+### Gestión de documentos (pendiente)
+
+El almacenamiento definitivo de archivos (Supabase, Google Drive, carpeta estática en `/public`, etc.) **aún no está definido**. La página de Descargas usa datos de ejemplo en `src/lib/documents.ts` y está preparada para conectar una fuente externa sin rediseñar la interfaz.
 
 ---
 
-## 📐 CRITERIOS DE ÉXITO
+## Criterios de éxito
 
 - [ ] Portal web desplegado y accesible públicamente
-- [ ] Mapa maestro con todas las capas de riesgo cargadas y visibles
+- [ ] Visor con mapas de riesgo cargados y visibles
 - [ ] Widgets interactivos funcionando (filtros, conteos, histogramas)
 - [ ] Popups mostrando atributos relevantes al hacer clic
 - [ ] Sitio responsive (móvil, tablet, desktop)
 - [ ] Sección de descargas con documentación
-- [ ] Formulario de contacto funcional
 - [ ] Tiempo de carga del mapa < 3 segundos
-- [ ] Sin branding visible de CARTO en los mapas embebidos
+- [ ] Sin branding visible del proveedor GIS en los mapas embebidos
 - [ ] Navegación clara entre secciones del portal
 
 ---
 
-## 🔗 RECURSOS Y REFERENCIAS
+## Recursos y referencias
 
+### Plataformas GIS
+
+- **ArcGIS Online:** arcgis.com
 - **CARTO Builder:** app.carto.com
-- **Documentación CARTO:** docs.carto.com
+- **QGIS:** qgis.org
+
+### Documentación
+
+- **CARTO docs:** docs.carto.com
+- **CARTO Embedding:** docs.carto.com/carto-user-manual/maps/sharing-and-collaboration/embedding-maps
+- **ArcGIS embed:** doc.arcgis.com/en/arcgis-online/share-maps-maps/embed-maps.htm
 - **GDAL ogr2ogr:** gdal.org/en/stable/programs/ogr2ogr.html
-- **CARTO Academy:** academy.carto.com
-- **CARTO Embedding docs:** docs.carto.com/carto-user-manual/maps/sharing-and-collaboration/embedding-maps
-- **CARTO Customization:** docs.carto.com/carto-user-manual/settings/customizations/customizing-appearance-and-branding
+
+### Proyecto
+
+- **Código:** `src/` en la raíz del repositorio
+- **Configuración de mapas:** `src/lib/mapConfig.ts` + `.env.local`
+- **Documentos de ejemplo:** `src/lib/documents.ts`

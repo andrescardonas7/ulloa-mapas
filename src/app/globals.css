@@ -1,26 +1,84 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --brand-red: #0f766e;
+  --brand-red-hover: #115e59;
+  --brand-red-soft: #ccfbf1;
+
+  --brand-sky: #38bdf8;
+  --brand-sky-dark: #075985;
+  --brand-sky-soft: #e0f2fe;
+
+  --brand-green: #16a34a;
+  --brand-green-soft: #dcfce7;
+  --brand-green-text: #166534;
+
+  --brand-yellow: #d97706;
+  --brand-yellow-bright: #f59e0b;
+  --brand-yellow-soft: #fffbeb;
+  --brand-yellow-border: #b45309;
+  --brand-yellow-text: #92400e;
+
+  --brand-red-text: #0f5f59;
+
+  --brand-dark: #0f172a;
+  --brand-muted: #475569;
+  --brand-border: #cbd5e1;
+
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --surface: #ffffff;
 }
 
+/* Valores hex literales para que Tailwind genere las utilidades correctamente */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: #f8fafc;
+  --color-foreground: #0f172a;
+  --color-surface: #ffffff;
+  --color-brand-red: #0f766e;
+  --color-brand-red-hover: #115e59;
+  --color-brand-red-soft: #ccfbf1;
+  --color-brand-sky: #38bdf8;
+  --color-brand-sky-dark: #075985;
+  --color-brand-sky-soft: #e0f2fe;
+  --color-brand-green: #16a34a;
+  --color-brand-green-soft: #dcfce7;
+  --color-brand-green-text: #166534;
+  --color-brand-yellow: #d97706;
+  --color-brand-yellow-bright: #f59e0b;
+  --color-brand-yellow-soft: #fffbeb;
+  --color-brand-yellow-border: #b45309;
+  --color-brand-yellow-text: #92400e;
+  --color-brand-red-text: #0f5f59;
+  --color-brand-dark: #0f172a;
+  --color-brand-muted: #475569;
+  --color-brand-border: #cbd5e1;
+  --color-risk-high: #dc2626;
+  --color-risk-high-fill: #fee2e2;
+  --color-risk-medium: #d97706;
+  --color-risk-medium-fill: #fed7aa;
+  --color-risk-medium-text: #9a3412;
+  --color-risk-low: #ca8a04;
+  --color-risk-low-fill: #fef3c7;
+  --color-risk-low-text: #854d0e;
+  --color-risk-none: #16a34a;
+  --color-risk-none-fill: #dcfce7;
+  --color-risk-none-text: #166534;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

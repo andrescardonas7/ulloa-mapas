@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ulloa en Mapas
 
-## Getting Started
+Portal web público de información geográfica para la gestión del riesgo de desastres en el municipio de Ulloa, Valle del Cauca.
 
-First, run the development server:
+## Stack
+
+- [Next.js](https://nextjs.org/) 16 (App Router)
+- [React](https://react.dev/) 19
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/) 4
+
+## Requisitos
+
+- Node.js 20+
+- pnpm 10+
+
+## Instalación
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+cp .env.local.example .env.local
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Edita `.env.local` con las URLs de embed de tus mapas (ArcGIS Online, CARTO o QGIS Server).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Desarrollo
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm dev
+```
 
-## Learn More
+Abre [http://localhost:3000](http://localhost:3000).
 
-To learn more about Next.js, take a look at the following resources:
+## Build
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+pnpm build
+pnpm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Estructura del sitio
 
-## Deploy on Vercel
+| Ruta | Contenido |
+|------|-----------|
+| `/` | Inicio con CTA |
+| `/visor` | Todos los mapas embebidos (tabs) |
+| `/dashboards` | Indicadores y estadísticas |
+| `/descargas` | Documentos descargables |
+| `/documentacion` | Marco normativo y referencias |
+| `/acerca-de` | Qué es Ulloa en Mapas |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Configurar mapas
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Publica tu mapa en ArcGIS Online, CARTO Builder o QGIS Server/Cloud.
+2. Obtén la URL de embed (iframe).
+3. Añádela en `.env.local` usando las variables definidas en `.env.local.example`.
+4. Para agregar un nuevo mapa al visor, edita `src/lib/mapConfig.ts`.
+
+## Documentos
+
+Los documentos de descarga se gestionan en `src/lib/documents.ts` (datos locales de ejemplo). Cuando definas el almacenamiento definitivo (carpeta estática, Supabase, Google Drive, etc.), reemplaza esa fuente sin cambiar la interfaz de la página.
+
+## Documentación del proyecto
+
+Ver [docs/ulloa-en-mapas.md](docs/ulloa-en-mapas.md) para arquitectura, paleta de colores y criterios de éxito.
