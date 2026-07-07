@@ -1,69 +1,69 @@
 @import "tailwindcss";
 
 :root {
-  --brand-red: #0f766e;
-  --brand-red-hover: #115e59;
-  --brand-red-soft: #ccfbf1;
+  --brand-red: #d91424;
+  --brand-red-hover: #b8101e;
+  --brand-red-soft: #fde8ea;
 
-  --brand-sky: #38bdf8;
-  --brand-sky-dark: #075985;
-  --brand-sky-soft: #e0f2fe;
+  --brand-sky: #84c1d9;
+  --brand-sky-dark: #2a6f8a;
+  --brand-sky-soft: #e8f4f9;
 
-  --brand-green: #16a34a;
+  --brand-green: #088c29;
   --brand-green-soft: #dcfce7;
-  --brand-green-text: #166534;
+  --brand-green-text: #065f1a;
 
-  --brand-yellow: #d97706;
-  --brand-yellow-bright: #f59e0b;
+  --brand-yellow: #fddc08;
+  --brand-yellow-bright: #fddc08;
   --brand-yellow-soft: #fffbeb;
-  --brand-yellow-border: #b45309;
-  --brand-yellow-text: #92400e;
+  --brand-yellow-border: #ca8a04;
+  --brand-yellow-text: #854d0e;
 
-  --brand-red-text: #0f5f59;
+  --brand-red-text: #9b1019;
 
-  --brand-dark: #0f172a;
+  --brand-dark: #0d0d0d;
   --brand-muted: #475569;
   --brand-border: #cbd5e1;
 
   --background: #f8fafc;
-  --foreground: #0f172a;
+  --foreground: #0d0d0d;
   --surface: #ffffff;
 }
 
 /* Valores hex literales para que Tailwind genere las utilidades correctamente */
 @theme inline {
   --color-background: #f8fafc;
-  --color-foreground: #0f172a;
+  --color-foreground: #0d0d0d;
   --color-surface: #ffffff;
-  --color-brand-red: #0f766e;
-  --color-brand-red-hover: #115e59;
-  --color-brand-red-soft: #ccfbf1;
-  --color-brand-sky: #38bdf8;
-  --color-brand-sky-dark: #075985;
-  --color-brand-sky-soft: #e0f2fe;
-  --color-brand-green: #16a34a;
+  --color-brand-red: #d91424;
+  --color-brand-red-hover: #b8101e;
+  --color-brand-red-soft: #fde8ea;
+  --color-brand-sky: #84c1d9;
+  --color-brand-sky-dark: #2a6f8a;
+  --color-brand-sky-soft: #e8f4f9;
+  --color-brand-green: #088c29;
   --color-brand-green-soft: #dcfce7;
-  --color-brand-green-text: #166534;
-  --color-brand-yellow: #d97706;
-  --color-brand-yellow-bright: #f59e0b;
+  --color-brand-green-text: #065f1a;
+  --color-brand-yellow: #fddc08;
+  --color-brand-yellow-bright: #fddc08;
   --color-brand-yellow-soft: #fffbeb;
-  --color-brand-yellow-border: #b45309;
-  --color-brand-yellow-text: #92400e;
-  --color-brand-red-text: #0f5f59;
-  --color-brand-dark: #0f172a;
+  --color-brand-yellow-border: #ca8a04;
+  --color-brand-yellow-text: #854d0e;
+  --color-brand-red-text: #9b1019;
+  --color-brand-dark: #0d0d0d;
   --color-brand-muted: #475569;
   --color-brand-border: #cbd5e1;
-  --color-risk-high: #dc2626;
-  --color-risk-high-fill: #fee2e2;
-  --color-risk-medium: #d97706;
-  --color-risk-medium-fill: #fed7aa;
-  --color-risk-medium-text: #9a3412;
-  --color-risk-low: #ca8a04;
-  --color-risk-low-fill: #fef3c7;
+  --color-risk-high: #d91424;
+  --color-risk-high-fill: #fde8ea;
+  --color-risk-medium: #e8a317;
+  --color-risk-medium-fill: #fef3c7;
+  --color-risk-medium-text: #92400e;
+  --color-risk-low: #fddc08;
+  --color-risk-low-fill: #fefce8;
   --color-risk-low-text: #854d0e;
-  --color-risk-none: #16a34a;
+  --color-risk-none: #088c29;
   --color-risk-none-fill: #dcfce7;
-  --color-risk-none-text: #166534;
+  --color-risk-none-text: #065f1a;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }

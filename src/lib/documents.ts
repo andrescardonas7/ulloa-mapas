@@ -30,9 +30,9 @@ const documents: DocumentItem[] = [
     title: "Datos abiertos — capas vectoriales",
     category: "Datos abiertos",
     description:
-      "Conjunto de datos geográficos en formato GeoPackage para descarga.",
-    url: "/documentos/ejemplo-datos.gpkg",
-    sizeLabel: "18.7 MB",
+      "Conjunto de datos geográficos de ejemplo en formato GeoJSON para descarga.",
+    url: "/documentos/ejemplo-datos.geojson",
+    sizeLabel: "1 KB",
     publishedAt: "2025-12-01",
   },
 ];

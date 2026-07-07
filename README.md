@@ -21,7 +21,7 @@ pnpm install
 cp .env.local.example .env.local
 ```
 
-Edita `.env.local` con las URLs de embed de tus mapas (ArcGIS Online, CARTO o QGIS Server).
+Edita `.env.local` con las URLs de embed de tus mapas (ArcGIS Online, CARTO o QGIS Server) y, en producción, la URL pública del sitio (`NEXT_PUBLIC_SITE_URL`).
 
 ## Desarrollo
 
@@ -37,6 +37,16 @@ Abre [http://localhost:3000](http://localhost:3000).
 pnpm build
 pnpm start
 ```
+
+## Verificación local
+
+Antes de abrir un PR o desplegar:
+
+```bash
+pnpm verify
+```
+
+Ejecuta lint, comprobación de tipos (`tsc`) y build de producción.
 
 ## Estructura del sitio
 
