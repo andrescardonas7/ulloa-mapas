@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { mainNavItems } from "@/lib/navigation";
 
@@ -16,6 +16,19 @@ function isActivePath(pathname: string, href: string): boolean {
 export function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!menuOpen) {
+      return;
+    }
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [menuOpen]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-brand-border bg-surface">
@@ -55,7 +68,8 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                aria-current={active ? "page" : undefined}
+                className={`rounded-lg px-3 py-2 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-red ${
                   active
                     ? "bg-brand-red-soft text-brand-red-text"
                     : "text-brand-muted hover:bg-brand-red-soft hover:text-brand-red-text"

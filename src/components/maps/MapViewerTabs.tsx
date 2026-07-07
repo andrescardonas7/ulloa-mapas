@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { MapEmbed } from "@/components/maps/MapEmbed";
 import type { MapViewItem } from "@/lib/types";
@@ -18,9 +18,49 @@ export function MapViewerTabs({
   const [activeId, setActiveId] = useState(
     configuredMaps[0]?.id ?? maps[0]?.id ?? "",
   );
+  const tabRefs = useRef(new Map<string, HTMLButtonElement>());
 
   const activeMap =
     maps.find((map) => map.id === activeId) ?? configuredMaps[0] ?? maps[0];
+
+  const focusAndActivate = (map: MapViewItem) => {
+    setActiveId(map.id);
+    tabRefs.current.get(map.id)?.focus();
+  };
+
+  const handleTabKeyDown = (
+    event: React.KeyboardEvent<HTMLButtonElement>,
+    currentIndex: number,
+  ) => {
+    if (configuredMaps.length === 0) {
+      return;
+    }
+    const lastIndex = configuredMaps.length - 1;
+    let nextIndex: number | null = null;
+
+    switch (event.key) {
+      case "ArrowRight":
+        nextIndex = currentIndex === lastIndex ? 0 : currentIndex + 1;
+        break;
+      case "ArrowLeft":
+        nextIndex = currentIndex === 0 ? lastIndex : currentIndex - 1;
+        break;
+      case "Home":
+        nextIndex = 0;
+        break;
+      case "End":
+        nextIndex = lastIndex;
+        break;
+      default:
+        return;
+    }
+
+    event.preventDefault();
+    const nextMap = configuredMaps[nextIndex];
+    if (nextMap) {
+      focusAndActivate(nextMap);
+    }
+  };
 
   if (maps.length === 0) {
     return (
@@ -40,16 +80,28 @@ export function MapViewerTabs({
         {maps.map((map) => {
           const isActive = map.id === activeId;
           const isConfigured = map.src !== null;
+          const configuredIndex = configuredMaps.findIndex(
+            (configured) => configured.id === map.id,
+          );
           return (
             <button
               key={map.id}
+              ref={(node) => {
+                if (node) {
+                  tabRefs.current.set(map.id, node);
+                } else {
+                  tabRefs.current.delete(map.id);
+                }
+              }}
               type="button"
               role="tab"
               aria-selected={isActive}
               aria-controls={`panel-${map.id}`}
               id={`tab-${map.id}`}
               disabled={!isConfigured}
+              tabIndex={isConfigured ? (isActive ? 0 : -1) : undefined}
               onClick={() => setActiveId(map.id)}
+              onKeyDown={(event) => handleTabKeyDown(event, configuredIndex)}
               className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-red ${
                 isActive
                   ? "bg-brand-red text-white shadow-sm shadow-brand-red/20"

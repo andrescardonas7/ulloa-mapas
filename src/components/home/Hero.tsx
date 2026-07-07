@@ -2,8 +2,16 @@ import Link from "next/link";
 
 export function Hero() {
   return (
-    <section className="rounded-2xl border border-brand-dark bg-brand-dark px-6 py-12 text-white shadow-sm sm:px-10 sm:py-16">
-      <div className="max-w-2xl">
+    <section className="relative overflow-hidden rounded-2xl border border-brand-dark bg-gradient-to-br from-brand-dark via-slate-900 to-slate-800 px-6 py-12 text-white shadow-sm sm:px-10 sm:py-16">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-brand-sky/10 blur-3xl"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -bottom-32 right-16 size-64 rounded-full bg-brand-red/15 blur-3xl"
+      />
+      <div className="relative max-w-2xl">
         <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase text-slate-100">
           <span
             aria-hidden

@@ -1,8 +1,32 @@
 import type { MapConfig, MapViewItem } from "@/lib/types";
 
+/**
+ * Solo se aceptan URLs https absolutas como origen de iframe.
+ * Bloquea esquemas peligrosos (javascript:, data:) y http en producción.
+ */
+function isValidEmbedUrl(value: string): boolean {
+  let url: URL;
+  try {
+    url = new URL(value);
+  } catch {
+    return false;
+  }
+  if (url.protocol === "https:") {
+    return true;
+  }
+  // Permitir http solo en desarrollo (p. ej. QGIS Server local).
+  return url.protocol === "http:" && process.env.NODE_ENV !== "production";
+}
+
 export function getMapUrl(envKey: string): string | null {
-  const url = process.env[envKey];
-  if (!url || url.trim() === "") {
+  const url = process.env[envKey]?.trim();
+  if (!url) {
+    return null;
+  }
+  if (!isValidEmbedUrl(url)) {
+    console.warn(
+      `[mapConfig] URL inválida en ${envKey}: se ignora. Usa una URL https absoluta.`,
+    );
     return null;
   }
   return url;

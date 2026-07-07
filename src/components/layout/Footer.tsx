@@ -9,10 +9,22 @@ export function Footer() {
     <footer className="mt-auto border-t-4 border-brand-red bg-slate-100 text-brand-dark">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-10 sm:px-6 md:grid-cols-2">
         <div>
-          <p className="text-lg font-bold text-brand-dark">Ulloa en Mapas</p>
-          <p className="mt-2 max-w-md text-pretty text-sm leading-relaxed text-brand-muted">
+          <p className="flex items-center gap-2 text-lg font-bold text-brand-dark">
+            <span
+              aria-hidden
+              className="flex size-8 items-center justify-center rounded-lg bg-brand-red text-xs font-bold text-white"
+            >
+              UM
+            </span>
+            Ulloa en Mapas
+          </p>
+          <p className="mt-3 max-w-md text-pretty text-sm leading-relaxed text-brand-muted">
             Portal público de información geográfica para la gestión del riesgo
             de desastres en el municipio de Ulloa, Valle del Cauca.
+          </p>
+          <p className="mt-3 text-pretty text-xs text-brand-muted">
+            Este portal es informativo. En caso de emergencia, sigue las
+            indicaciones de las autoridades competentes.
           </p>
         </div>
         <div>

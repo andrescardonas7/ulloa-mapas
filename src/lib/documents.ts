@@ -37,11 +37,25 @@ const documents: DocumentItem[] = [
   },
 ];
 
-export function getDocuments(): DocumentItem[] {
-  return [...documents].sort(
-    (a, b) =>
-      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+/**
+ * Solo se sirven rutas locales bajo /documentos/. Evita que una futura
+ * fuente externa (CMS, API) inyecte esquemas peligrosos o redirecciones.
+ */
+function isSafeDocumentUrl(url: string): boolean {
+  return (
+    url.startsWith("/documentos/") &&
+    !url.includes("..") &&
+    !url.startsWith("//")
   );
+}
+
+export function getDocuments(): DocumentItem[] {
+  return documents
+    .filter((doc) => isSafeDocumentUrl(doc.url))
+    .sort(
+      (a, b) =>
+        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+    );
 }
 
 export function getDocumentCategories(): string[] {

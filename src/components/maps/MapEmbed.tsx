@@ -33,8 +33,10 @@ export function MapEmbed({ src, title, mapKey }: MapEmbedProps) {
       title={title}
       loading="lazy"
       className="min-h-[420px] w-full rounded-xl border border-brand-border bg-slate-100 shadow-sm"
+      sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+      allow="fullscreen"
       allowFullScreen
-      referrerPolicy="no-referrer-when-downgrade"
+      referrerPolicy="strict-origin-when-cross-origin"
     />
   );
 }
