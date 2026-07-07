@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
+import { siteConfig } from "@/lib/site";
 
 import "./globals.css";
 
@@ -17,12 +18,28 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Ulloa en Mapas",
-    template: "%s | Ulloa en Mapas",
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
   },
-  description:
-    "Portal público de información geográfica para la gestión del riesgo de desastres en Ulloa, Valle del Cauca.",
+  description: siteConfig.description,
+  openGraph: {
+    type: "website",
+    locale: siteConfig.locale.replace("_", "-"),
+    siteName: siteConfig.name,
+    title: siteConfig.name,
+    description: siteConfig.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
